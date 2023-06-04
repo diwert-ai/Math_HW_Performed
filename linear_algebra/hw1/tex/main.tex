@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -235,7 +236,7 @@ $$3((BA)^T-E)^2=3\left(\begin{array}{rr}2 & -1\\0 & 3\end{array}\right)^2=3\left
 Таким образом:
 $$(2A)^2-3((BA)^T-E)^2=\left(\begin{array}{rr}-20 & 8\\-12 & -24\end{array}\right)-\left(\begin{array}{rr}12 & -15\\0 & 27\end{array}\right)=\left(\begin{array}{rr}-32 & 23\\-12 & -51\end{array}\right)$$
 \section*{Задача 4}
-{\bf Ответ:} все матрицы вида $\lambda\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right)$, где $\lambda\in\mathbb{R}$
+{\bf Ответ:} все матрицы вида $\lambda\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right)+\mu\left(\begin{array}{rr}0 & 3\\2 & 6\end{array}\right)$, где $\lambda,\mu\in\mathbb{R}$.
 \\
 \\
 {\bf Решение.} Пусть $X$ искомая матрица, тогда
@@ -251,24 +252,25 @@ $$\begin{cases}-x+3z=-x+2y\\2y+5t=3z+5t\\-y+3t=3x+5y\\2x+5z=-z+2t\end{cases}$$
 $$\Updownarrow$$
 \begin{equation}
 \label{eq2}
-    \begin{cases}3z=2y\\2y=3z\\6y+3x+3t=0\\6z+2x-2t=0\end{cases}
+    \begin{cases}3z=2y\\2y=3z\\6y+3x-3t=0\\6z+2x-2t=0\end{cases}
 \end{equation}
 Если поделить на 3 третье уравнение и на 2 четвертое, а также исключить второе уравнение т.к. оно эквивалентно первому, то система~(\ref{eq2}) будет равносильна
 \begin{equation}
 \label{eq3}
-    \begin{cases}3z=2y\\2y+x+t=0\\3z+x-t=0\end{cases}
+    \begin{cases}3z=2y\\2y+x-t=0\\3z+x-t=0\end{cases}
 \end{equation}
-Если, учитывая, что  $3z=2y$, вычесть из второго уравнения третье, то получим $t=0$. И переписав второе уравнение, с учетом $t=0$, получим, что система~(\ref{eq3}) равносильна
+Учитывая, что  $3z=2y$, полуаем, что третье уравнение избыточное, т.е. система~(\ref{eq3}) равносильна
 \begin{equation}
 \label{eq4}
-    \begin{cases}3z=2y\\x=-2y\\t=0\end{cases}
+    \begin{cases}3z=2y\\2y+x-t=0\end{cases}
 \end{equation}
 А система~(\ref{eq4}), очевидно, равносильна
-$$\begin{cases}y\in \mathbb{R}\ \textrm{(свободная переменная)}\\z=\frac{2}{3}y\\x=-2y\\t=0\end{cases}$$
-Таким образом $X=\left(\begin{array}{rr}-2y & y\\\frac{2}{3}y & 0\end{array}\right)=\frac{y}{3}\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right)$, где $y\in\mathbb{R}$.
+$$\begin{cases}x,t\in \mathbb{R}\ \textrm{(свободные переменные)}\\y=\frac{t-x}{2}\\z=\frac{t-x}{3}\end{cases}$$
+Таким образом $X=\left(\begin{array}{cc}x & \frac{t-x}{2}\\\frac{t-x}{3} & t\end{array}\right)=\left(\begin{array}{cc}0 & t/2\\t/3 & t\end{array}\right)+\left(\begin{array}{cc}x & -x/2\\-x/3 & 0\end{array}\right)=\frac{t}{6}\left(\begin{array}{rr}0 & 3\\2 & 6\end{array}\right) -\frac{x}{6}\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right)$, где $x,t\in\mathbb{R}$.
 \\
 Что равносильно
-$$X=\lambda\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right),\ \textrm{где }\lambda\in\mathbb{R}$$
+$$X=\lambda\left(\begin{array}{rr}-6 & 3\\2 & 0\end{array}\right)+\mu\left(\begin{array}{rr}0 & 3\\2 & 6\end{array}\right),\ \textrm{где }\lambda,\mu\in\mathbb{R}$$
+
 \section*{Задача 5}
 {\bf Ответ:} два варианта:
 $$CBFDA=\left(\begin{array}{ccccc}1 & 4 & -3 & 2 & 2\\137 & 16 & 65 & -34 & -6\end{array}\right);$$
