@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\ort}{ort}
+
+
+\title{Домашнее задание 5 (линал)}
+\author{Андрей Зотов}
+\date{Июль 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ:} $J=\left(\begin{array}{rrrr}-1 & 1 & 0 & 0\\0 & -1 & 0 & 0\\0 & 0 & 1 & 1\\0 & 0 & 0 & 1\end{array}\right)$.
+\\
+\\
+{\bf Решение.} Пусть $A=\left(\begin{array}{rrrr}0 & 0 & 1 & 0\\0 & 0 & 0 & 1\\3 & 4 & 0 & 0\\-1 & -1 & 0 & 0\end{array}\right)$. Найдем собственные значения $A$:
+\\
+$$\chi_A(\lambda)=\det (\lambda E -A)=\left|\begin{array}{rrrr}\lambda & 0 & -1 & 0\\0 & \lambda & 0 & -1\\-3 & -4 & \lambda & 0\\1 & 1 & 0 & \lambda\end{array}\right|=\lambda (-1)^{1+1}\left|\begin{array}{rrr}\lambda & 0 & -1\\-4 & \lambda & 0\\1 & 0 & \lambda\end{array}\right|+(-1)\cdot(-1)^{1+3}\left|\begin{array}{rrr}0 & \lambda & -1\\-3 & -4 & 0\\1 & 1 & \lambda\end{array}\right|$$
+$$\Downarrow$$
+$$\chi_A(\lambda)=\lambda(\lambda^3+\lambda)-(3\lambda^2-1)$$
+$$\Downarrow$$
+$$\lambda^4-2\lambda^2+1=0$$
+$$\Updownarrow$$
+$$(\lambda+1)^2(\lambda-1)^2=0$$
+$$\Updownarrow$$
+$$\lambda \in \{-1, 1\}$$
+Таким образом получили два разных собственных значения $\lambda\in\{1,2\}$, каждое из которых имеет кратность~2.
+Найдем размерности собственных подпространств, отвечающих каждому собственному значению.
+\\
+1. $\lambda=-1$, $V_{\lambda=-1}=\{v=(x_1,x_2,x_3,x_4)^T\in\mathbb{R}^4|(A+E)v=0\}$
+$$A+E=\left(\begin{array}{rrrr}1 & 0 & 1 & 0\\0 & 1 & 0 & 1\\3 & 4 & 1 & 0\\-1 & -1 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & 1 & 0\\0 & 1 & 0 & 1\\0 & 4 & -2 & 0\\0 & -1 & 1 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & 1 & 0\\0 & 1 & 0 & 1\\0 & 0 & -2 & -4\\0 & 0 & 1 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & 1 & 0\\0 & 1 & 0 & 1\\0 & 0 & 1 & 2\end{array}\right)$$
+Получили одну свободную переменную $x_4$ и поэтому $\dim V_{\lambda=-1}=1$. Т.е. в жордановом блоке для $\lambda=-1$ только одна жорданова клетка, при этом ее размер будет $2\times2$, т.к. $\lambda=-1$ имеет кратность 2.
+\\
+2. $\lambda=1$, $V_{\lambda=1}=\{v=(x_1,x_2,x_3,x_4)^T\in\mathbb{R}^4|(A-E)v=0\}$
+$$A-E=\left(\begin{array}{rrrr}-1 & 0 & 1 & 0\\0 & -1 & 0 & 1\\3 & 4 & -1 & 0\\-1 & -1 & 0 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & -1 & 0\\0 & 1 & 0 & -1\\3 & 4 & -1 & 0\\1 & 1 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & -1 & 0\\0 & 1 & 0 & -1\\0 & 4 & 2 & 0\\0 & 1 & 1 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrrr}1 & 0 & -1 & 0\\0 & 1 & 0 & -1\\0 & 0 & 2 & 4\\0 & 0 & 1 & 2\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrrr}1 & 0 & -1 & 0\\0 & 1 & 0 & -1\\0 & 0 & 1 & 2\end{array}\right)$$
+Получили одну свободную переменную $x_4$ и поэтому $\dim V_{\lambda=1}=1$. Т.е. в жордановом блоке для $\lambda=1$ тоже только одна жорданова клетка размера $2\times2$ ($\lambda=1$ тоже имеет кратность 2).
+\par
+Таким образом ЖНФ матрицы $A$ будет
+$$J=\left(\begin{array}{rrrr}-1 & 1 & 0 & 0\\0 & -1 & 0 & 0\\0 & 0 & 1 & 1\\0 & 0 & 0 & 1\end{array}\right).$$
+
+\section*{Задача 2}
+{\bf Ответ:} равносторонний треугольник со стороной 6 и углами по $60^{\circ}$.
+\\
+\\
+{\bf Решение.} Пусть $O$ - точка начала координат. Найдем длины сторон, учитывая, что задано стандартное скалярное произведение в $\mathbb{R}^5$:
+$$|\overrightarrow{AB}|=|\overrightarrow{OB}-\overrightarrow{OA}|=|(4,0,2,0,4)^T|=\sqrt{16+4+16}=6;$$
+$$|\overrightarrow{BC}|=|\overrightarrow{OC}-\overrightarrow{OB}|=|(-1,3,1,3,-4)^T|=\sqrt{1+9+1+9+16}=6;$$
+$$|\overrightarrow{AC}|=|\overrightarrow{OC}-\overrightarrow{OA}|=|(3,3,3,3,0)^T|=\sqrt{9+9+9+9}=6.$$
+Таким образом все стороны треугольника $ABC$ равны 6, и поэтому его углы равны $60^{\circ}$ автоматически. Для проверки найдем косинусы углов через формулы со стандартным скалярным произведением (как мы уже вычислили в знаменателях этих формул везде будет стоять $6\cdot6=36$):
+$$\cos \angle{BAC}=\frac{(\overrightarrow{AB},\overrightarrow{AC})}{36}=\frac{((4,0,2,0,4)^T, (3,3,3,3,0)^T)}{36}=\frac{12+6}{36}=\frac{1}{2}\Rightarrow \angle{BAC}=60^{\circ};$$
+$$\cos \angle{ABC}=\frac{(\overrightarrow{BA},\overrightarrow{BC})}{36}=\frac{((-4,0,-2,0,-4)^T, (-1,3,1,3,-4)^T)}{36}=\frac{4-2+16}{36}=\frac{1}{2}\Rightarrow \angle{ABC}=60^{\circ};$$
+$$\cos \angle{ACB}=\frac{(\overrightarrow{CB},\overrightarrow{CA})}{36}=\frac{((1,-3,-1,-3,4)^T, (-3,-3,-3,-3,0)^T)}{36}=\frac{-3+9+3+9}{36}=\frac{1}{2}\Rightarrow \angle{ACB}=60^{\circ}.$$
+
+\section*{Задача 3}
+{\bf Ответ:} $\rho(x,U)=8,\ \pr_U x=(-3,1,4,2,3)^T$.
+\\
+\\
+{\bf Решение.} Пусть в $\mathbb{R}^5$ задано стандартное скалярное произведение и пусть у матрицы $A$ в столбцах стоят вектора $a_i,\ (i=1,2,3,4)$, тогда ортогональное дополнение к $U=\langle a_1, a_2, a_3, a_4 \rangle$ можно задать как пространство решений ОСЛУ: 
+$$U^{\bot}=\{u^{\bot}=(x_1,x_2,x_3,x_4,x_5)^T\in\mathbb{R}^5|A^Tu^{\bot}=0\}.$$
+\par
+Решим эту систему методом Гаусса:
+$$A^T=\left(\begin{array}{rrrrr}7 & 5 & 0 & 1 & 0\\-4 & 1 & 5 & 6 & 0\\-3 & -2 & 4 & -4 & 0\\3 & 1 & 0 & 0 & -3\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}3 & 6 & 5 & 7 & 0\\4 & -1 & -5 & -6 & 0\\-3 & -2 & 4 & -4 & 0\\3 & 1 & 0 & 0 & -3\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -3 & -1 & -10 & 0\\3 & 6 & 5 & 7 & 0\\-3 & -2 & 4 & -4 & 0\\3 & 1 & 0 & 0 & -3\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrrrr}1 & -3 & -1 & -10 & 0\\0 & 5 & 5 & 7 & 3\\0 & 4 & 9 & 3 & 0\\3 & 1 & 0 & 0 & -3\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -3 & -1 & -10 & 0\\0 & 5 & 5 & 7 & 3\\0 & 4 & 9 & 3 & 0\\0 & 10 & 3 & 30 & -3\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -3 & -1 & -10 & 0\\0 & 1 & -4 & 4 & 3\\0 & 4 & 9 & 3 & 0\\0 & 0 & -7 & 16 & -9\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrrrr}1 & -3 & -1 & -10 & 0\\0 & 1 & -4 & 4 & 3\\0 & 0 & 25 & -13 & -12\\0 & 0 & -7 & 16 & -9\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -2 & -5 & -6 & 3\\0 & 1 & -4 & 4 & 3\\0 & 0 & 4 & 35 & -39\\0 & 0 & -7 & 16 & -9\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -2 & -5 & -6 & 3\\0 & 1 & -4 & 4 & 3\\0 & 0 & 4 & 35 & -39\\0 & 0 & 3 & -51 & 48\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrrrr}1 & -2 & -5 & -6 & 3\\0 & 1 & -4 & 4 & 3\\0 & 0 & 1 & 86 & -87\\0 & 0 & 3 & -51 & 48\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -2 & -5 & -6 & 3\\0 & 1 & -4 & 4 & 3\\0 & 0 & 1 & 86 & -87\\0 & 0 & 0 & 309 & -309\end{array}\right)\rightarrow\left(\begin{array}{rrrrr}1 & -2 & -5 & -6 & 3\\0 & 1 & -4 & 4 & 3\\0 & 0 & 1 & 86 & -87\\0 & 0 & 0 & 1 & -1\end{array}\right)$$
+
+Таким образом получили одну свободную переменную $x_5$, т.е. $\dim U^{\bot}=1$. И ФСР будет состоять из одного базисного вектора $x^{\bot}$:
+$$x_5=1\Rightarrow x_4=x_5=1,\ x_3=87-86=1,\ x_2=4-4-3=-3,\ x_1=2\cdot(-3)+5+6-3=2\Rightarrow x^{\bot}=(2,-3,1,1,1)^T$$
+Т.е. $U^{\bot}=\langle x^{\bot} \rangle=\langle (2,-3,1,1,1)^T \rangle$.
+\par
+Пусть $v=\pr_U x$ (проекция $x$ на $U$). Т.к. $\mathbb{R}^5=U\oplus U^{\bot}=U\oplus \langle x^{\bot} \rangle$ (прямая сумма), то существует единственное разложение вектора $x$: $x = v + \alpha x^{\bot},\ \alpha\in\mathbb{R}$, причем $\alpha x^{\bot}$ - это ортогональная составляющая вектора $x$ относительно $U$. 
+\par
+Найдем $\alpha$:
+$$v\bot x^{\bot}\Rightarrow (x-\alpha x^{\bot}, x^{\bot})=0\Rightarrow (x,x^{\bot})-\alpha(x^{\bot},x^{\bot})=0\Rightarrow \alpha=\frac{(x,x^{\bot})}{(x^{\bot},x^{\bot})};$$
+$$x=(1,-5,6,4,5)^T,\ x^{\bot}=(2,-3,1,1,1)^T\Rightarrow\alpha = \frac{2+15+6+4+5}{4+9+1+1+1}=\frac{32}{16}=2.$$
+
+Таким образом ортогональная составляющая $x$ относительно $U$ будет $\ort_U x = \alpha x^{\bot} = 2\cdot(2,-3,1,1,1)^T$. И поэтому расстояние от $x$ до $U$ будет: 
+$$\rho(x, U) =|\ort_U x|=2\cdot|(2,-3,1,1,1)^T)|=2\cdot\sqrt{16}=8 .$$ 
+А проекция $x$ на $U$ будет: 
+$$\pr_U x=v=x-\alpha x^{\bot}=(1,-5,6,4,5)^T-2\cdot(2,-3,1,1,1)^T=(-3,1,4,2,3)^T.$$
+
+\section*{Задача 4}
+{\bf Ответ:} ортогональный базис линейной оболочки $\langle a_1, a_2, a_3 \rangle$ будет $u=\{u_1,u_2,u_3\}$, где $u_1=(1,2,2,-1)^T,\ u_2=(2,3,-3,2)^T,\ u_3=(2,-1,-1,-2)^T$.
+\\
+\\
+{\bf Решение.} Найдем ортогональный базис линейной оболочки $\langle a_1, a_2, a_3 \rangle$ евклидова пространства $\mathbb{R}^4$ со стандартным скалярным произведением с помощью процесса ортогонализации Грама-Шмидта:
+$$u_1=a_1=(1,2,2,-1)^T;$$
+$$u_2=a_2-\frac{(a_2,u_1)}{(u_1,u_1)}u_1=a_2-\frac{1+2-10-3}{1+4+4+1}u_1=(1,1,-5,3)^T+(1,2,2,-1)^T=(2,3,-3,2)^T;$$
+$$u_3=a_3-\frac{(a_3,u_1)}{(u_1,u_1)}u_1-\frac{(a_3,u_2)}{(u_2,u_2)}u_2=a_3-\frac{3+4+16+7}{10}u_1-\frac{6+6-24-14}{4+9+9+4}u_2=$$
+$$=(3,2,8,-7)^T-3\cdot(1,2,2,-1)^T+(2,3,-3,2)^T=(2,-1,-1,-2)^T.$$
+
+\section*{Задача 5}
+{\bf Ответ:} приближенное решение $\tilde x = 0,\ \tilde y = -\frac{1}{2},\ \tilde z = -\frac{1}{4}$.
+\\
+\\
+{\bf Решение.} Системе соответствует матрица:
+$$A=\left(\begin{array}{rrr}2 & 0 & -1\\0 & 1 &  1\\1 & -1 & 1\\1 & 0 & -1\end{array}\right)$$
+Убедимся, что столбцы матрицы $A$ линейно независимы. Для этого найдем ранг матрицы $A$ методом Гаусса:
+$$A=\left(\begin{array}{rrr}2 & 0 & -1\\0 & 1 &  1\\1 & -1 & 1\\1 & 0 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & 0\\0 & 1 &  1\\1 & -1 & 1\\1 & 0 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & 0\\0 & 1 &  1\\0 & -1 & 1\\0 & 0 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & 0\\0 & 1 &  1\\0 & 0 & 2\\0 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & 0\\0 & 1 &  1\\0 & 0 & 1\end{array}\right)$$
+$$\Downarrow$$
+$$\rank A = 3$$
+Ранг равен 3, поэтому столбцы матрицы $A$ линейно независимы $\Rightarrow$ приближенное решение по методу наименьших квадратов единственно и выражается формулой:
+$$\tilde v = (A^TA)^{-1}A^Tb,\ b=(1,-1,0,-1)^T$$
+Найдем вектор приближенного решения $\tilde v = (\tilde x, \tilde y, \tilde z)^T$:
+$$C=A^TA=\left(\begin{array}{rrrr}2 & 0 & 1 & 1\\0 & 1 & -1 & 0\\-1 & 1 & 1 & -1\end{array}\right)\cdot\left(\begin{array}{rrr}2 & 0 & -1\\0 & 1 &  1\\1 & -1 & 1\\1 & 0 & -1\end{array}\right)=\left(\begin{array}{rrr}6 & -1 & -2\\-1 & 2 & 0\\-2 & 0 & 4\end{array}\right)$$
+$$\det C = 48-8-4=36$$
+(вычисляем алгебраические дополнения $C$):
+$$C_{11}=8,\ C_{12}=4,\ C_{13}=4$$
+$$C_{21}=4,\ C_{22}=20,\ C_{23}=2$$
+$$C_{31}=4,\ C_{32}=2,\ C_{33}=11$$
+$$\Downarrow$$
+$$C^{-1}=(A^TA)^{-1}=\frac{1}{\det C}\cdot\left(\begin{array}{rrr}C_{11} & C_{12} & C_{13}\\C_{21} & C_{22} & C_{23}\\C_{31} & C_{32} & C_{33}\end{array}\right)^T=\frac{1}{36}\cdot\left(\begin{array}{rrr}8 & 4 & 4\\4 & 20 & 2\\4 & 2 & 11\end{array}\right)$$
+$$\Downarrow$$
+$$\tilde v = \frac{1}{36}\cdot\left(\begin{array}{rrr}8 & 4 & 4\\4 & 20 & 2\\4 & 2 & 11\end{array}\right)\cdot\left(\begin{array}{rrrr}2 & 0 & 1 & 1\\0 & 1 & -1 & 0\\-1 & 1 & 1 & -1\end{array}\right)\cdot\left(\begin{array}{r}1\\-1\\0\\-1\end{array}\right)=\frac{1}{36}\cdot\left(\begin{array}{rrr}8 & 4 & 4\\4 & 20 & 2\\4 & 2 & 11\end{array}\right)\cdot\left(\begin{array}{r}1\\-1\\-1\end{array}\right)=\frac{1}{36}\cdot\left(\begin{array}{r}0\\-18\\-9\end{array}\right)$$
+$$\Updownarrow$$
+$$\tilde v = (0, -\frac{1}{2}, -\frac{1}{4})^T$$
+$$\Updownarrow$$
+$$\tilde x = 0,\ \tilde y=-\frac{1}{2},\ \tilde z=-\frac{1}{4}.$$
+
+\end{document}
