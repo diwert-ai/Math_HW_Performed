@@ -1,0 +1,199 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\rank}{rk}
+\DeclareMathOperator{\Ima}{Im}
+
+
+\title{Домашнее задание 4 (линал)}
+\author{Андрей Зотов}
+\date{Июнь 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ:} $A=\left(\begin{array}{rrr}-3 & 5 & 2\\0 & 1 & 0\\1 & 0 & 0\end{array}\right)$ (в стандартном базисе).
+\\
+\\
+{\bf Решение.} Пусть $e_1=(1, 0, 0)^T, e_2=(0, 1, 0)^T, e_3=(0, 0, 1)^T$ стандартный базис в $\mathbb{R}^3$. По определению $i$-й столбец матрицы $A$ (линейного оператора $\varphi: \mathbb{R}^3\rightarrow\mathbb{R}^3$) в стандартном базисе состоит из координат вектора $Ae_i=\varphi(e_i)$ в стандартном базисе. При этом нам известно, что $Av_i=u_i$ ($i=1,2,3$), а также даны координаты $u_i$ и $v_i$ в стандартном базисе. Например, при $i=1$ имеем:
+$$v_1=e_1+2e_3, u_1=e_1+e_3\Rightarrow A(e_1+2e_3)=e_1+e_3\Leftrightarrow Ae_1 + 2Ae_3=e_1+e_3$$
+Далее расписывая таким же образом соотношения $Av_i=u_i$ для $i=2,3$ получаем систему:
+\begin{equation}
+\label{eq1}
+    \begin{cases}
+    Ae_1+2Ae_3 = e_1 + e_3\\
+    Ae_1+Ae_2-Ae_3 = e_2 + e_3\\
+    2Ae_1+3Ae_3 = 2e_3
+    \end{cases}
+\end{equation}
+Наша задача разрешить систему~(\ref{eq1}) относительно $Ae_i$ через линейные комбинации $e_i$ (коэффициенты при $e_i$ будут столбцами искомой матрицы). Видно, что полученная система линейна относительно $Ae_i$, поэтому можем составить расширенную матрицу $(V|U)$ этого уравнения и привести ее левую часть $V$ к каноническому ступенчатому виду. Не трудно заметить, что $V$ и $U$ - это матрицы $3\times3$, для которых формально верно следующее матричное произведение: $V(Ae_1, Ae_2, Ae_3)^T=U(e_1, e_2, e_3)^T$ и по сути строки матрицы $V$ - это координаты векторов $v_i$ в стандартном базисе, а строки матрицы $U$ - это координаты векторов $u_i$ в стандартном базисе. И в случае, если матрица $V$ обратима, то с помощью метода Гаусса мы можем получить соотношение $E(Ae_1, Ae_2, Ae_3)^T=V^{-1}U(e_1, e_2, e_3)^T$ 
+или что тоже самое алгоритмически $(V|U)\rightarrow(E|V^{-1}U)$. При этом в $i$-й строке матрицы $V^{-1}U$ будут координаты $Ae_i$ в стандартном базисе, т.е. искомая матрица $A = (V^{-1}U)^T$  Таким образом:
+$$(V|U)=\left(\begin{array}{rrr|rrr}1 & 0 & 2 & 1 & 0 & 1\\1 & 1 & -1 & 0 & 1 & 1\\2 & 0 & 3 & 0 & 0 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr|rrr}1 & 0 & 2 & 1 & 0 & 1\\0 & 1 & -3 & -1 & 1 & 0\\0 & 0 & -1 & -2 & 0 & 0\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrr|rrr}1 & 0 & 0 & -3 & 0 & 1\\0 & 1 & -3 & -1 & 1 & 0\\0 & 0 & 1 & 2 & 0 & 0\end{array}\right)\rightarrow\left(\begin{array}{rrr|rrr}1 & 0 & 0 & -3 & 0 & 1\\0 & 1 & 0 & 5 & 1 & 0\\0 & 0 & 1 & 2 & 0 & 0\end{array}\right)=(E|V^{-1}U)$$
+Т.е. в стандартном базисе матрица оператора $\varphi$ будет $A=(V^{-1}U)^T=\left(\begin{array}{rrr}-3 & 0 & 1\\5 & 1 & 0\\2 & 0 & 0\end{array}\right)^T=\left(\begin{array}{rrr}-3 & 5 & 2\\0 & 1 & 0\\1 & 0 & 0\end{array}\right)$.
+\section*{Задача 2}
+{\bf Ответ:} $A'=A(\varphi, f, g)=\left(\begin{array}{rrr}-2 & 0 & 0\\5 & 3 & 5\end{array}\right)$.
+\\
+\\
+{\bf Решение.} Пусть $f=\{f_1, f_2, f_3\},\ g=\{g_1,g_2\},\ s_2 = \{(1,0)^T, (0,1)^T\}$ стандартный базис в $\mathbb{R}^2$, а $s_3 = \{(1,0,0)^T,(0,1,0)^T,(0,0,1)^T\}$ стандартный базис в $\mathbb{R}^3$, тогда
+$$A'=A(\varphi,  f, g)=C^{-1}_{s_2\rightarrow g}A(\varphi, s_3, s_2)C_{s_3\rightarrow f}$$
+где $C_{s_2\rightarrow g}=\left(\begin{array}{rr}1 & 1\\2 & 1\end{array}\right)$ (по определению матрицы перехода $s_2\rightarrow g$ в ее $i$-м столбце стоят координаты базисного вектора $g_i$ в стандартном базисе $s_2$), т.е. $C^{-1}_{s_2\rightarrow g}=\left(\begin{array}{rr}-1 & 1\\2 & -1\end{array}\right)$. Аналогично $C_{s_3\rightarrow f}=\left(\begin{array}{rrr}1 & 1 & 1\\1 & 1 & 2\\1 & 2 & 3\end{array}\right)$. И по условию $A(\varphi, s_3, s_2)=\left(\begin{array}{rrr}1 & 2 & 0\\-1 & 0 & 2\end{array}\right)$. Таким образом:
+$$A'=\left(\begin{array}{rr}-1 & 1\\2 & -1\end{array}\right)\left(\begin{array}{rrr}1 & 2 & 0\\-1 & 0 & 2\end{array}\right)\left(\begin{array}{rrr}1 & 1 & 1\\1 & 1 & 2\\1 & 2 & 3\end{array}\right)=\left(\begin{array}{rrr}-2 & -2 & 2\\3 & 4 & -2\end{array}\right)\left(\begin{array}{rrr}1 & 1 & 1\\1 & 1 & 2\\1 & 2 & 3\end{array}\right)=\left(\begin{array}{rrr}-2 & 0 & 0\\5 & 3 & 5\end{array}\right).$$
+\section*{Задача 3}
+{\bf Ответ:} $A=\left(\begin{array}{rr}13/6 & 5/6\\5/3 & 4/3\end{array}\right)$.
+\\
+\\
+{\bf Решение.} Пусть $e_1=(1,0)^T, e_2=(0,1)^T$ стандартный базис в $\mathbb{R}^2$. Тогда по условию $\varphi(e_1+e_2)=\varphi(e_1)+\varphi(e_2)=3(e_1+e_2)$ и $\varphi(-e_1+2e_2)=-\varphi(e_1)+2\varphi(e_2)=0.5(-e_1+2e_2)$. Если обозначить $Ae_i=\varphi(e_i),\ i=1,2$, то получим систему как в задаче 1:
+\begin{equation}
+\label{eq2}
+    \begin{cases}
+    Ae_1+Ae_2 = 3e_1 + 3e_2\\
+    -2Ae_1+4Ae_2 = -e_1 + 2e_2\\
+    \end{cases}
+\end{equation}
+Решаем систему~(\ref{eq2}) относительно $Ae_i$ так же как в задаче 1 - приведением методом Гаусса к каноническому ступенчатому виду расширенной матрицы системы~(\ref{eq2}):
+$$(V|U)=\left(\begin{array}{rr|rr}1 & 1 & 3 & 3\\-2 & 4 &-1 & 2\end{array}\right)\rightarrow\left(\begin{array}{rr|rr}1 & 1 & 3 & 3\\0 & 6 & 5 & 8\end{array}\right)\rightarrow\left(\begin{array}{rr|rr}1 & 1 & 3 & 3\\0 & 1 & 5/6 & 4/3\end{array}\right)\rightarrow\left(\begin{array}{rr|rr}1 & 0 & 13/6 & 5/3\\0 & 1 & 5/6 & 4/3\end{array}\right)=(E|V^{-1}U)$$
+Транспонированная правая часть и есть матрица оператора $\varphi$ в стандартном базисе: 
+$$A=(V^{-1}U)^T=\left(\begin{array}{rr}13/6 & 5/3\\5/6 & 4/3\end{array}\right)^T=\left(\begin{array}{rr}13/6 & 5/6\\5/3 & 4/3\end{array}\right).$$
+\section*{Задача 4}
+{\bf Ответ:} собственные значения $\lambda \in \{0, 1\}$; базис пространства $V_{\lambda=0}$ состоит из одного собственного вектора $v_1=(1,2,3)^T$, т.е.  $V_{\lambda=0}=\langle(1,2,3)^T\rangle$; базис пространства $V_{\lambda=1}$ тоже состоит из одного собственного вектора $v_2=(1, 1, 1)^T$, т.е. $V_{\lambda=1}=\langle(1,1,1)^T\rangle$.  Матрицу линейного оператора диагонализировать нельзя - не существует базиса, в котором она имеет диагональный вид.
+\\
+\\
+{\bf Решение.} Пусть $A=\left(\begin{array}{rrr}4 & -5 & 2\\5 & -7 & 3\\6 & -9 & 4\end{array}\right)$. Найдем собственные значения линейного оператора с матрицей $A$, т.е. корни характеристического многочлена $\chi_A(\lambda)=\det(\lambda E-A)=0$:
+$$|\lambda E - A|=\left|\begin{array}{rrr}\lambda-4 & 5 & -2\\-5 & \lambda+7 & -3\\-6 & 9 & \lambda-4\end{array}\right|=(\lambda-4)^2(\lambda+7)+90+90-12(\lambda+7)+27(\lambda-4)+25(\lambda-4)=$$
+$$=(\lambda-4)^2(\lambda+7)+180+40\lambda-292=\lambda^3-\lambda^2=0$$
+$$\Updownarrow$$
+$$\chi_A(\lambda)=\lambda^2(\lambda-1)=0$$
+$$\Updownarrow$$
+$$\lambda \in \{0, 1\}$$
+Нашли два собственных значения, поэтому рассмотрим два случая.
+\par
+1. Для пространства $V_{\lambda=0}=\{v=(x_1,x_2,x_3)^T\in\mathbb{R}^3|Av = 0\}$ найдем базис (или собственные вектора соответствующие собственному значению $\lambda=0$):
+$$A=\left(\begin{array}{rrr}4 & -5 & 2\\5 & -7 & 3\\6 & -9 & 4\end{array}\right)\rightarrow\left(\begin{array}{rrr}4 & -5 & 2\\1 & -2 & 1\\6 & -9 & 4\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\4 & -5 & 2\\2 & -4 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\4 & -5 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\0 & 3 & -2\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrr}1 & 1 & -1\\0 & 3 & -2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 1 & -1\\0 & 1 & -2/3\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & -1/3\\0 & 1 & -2/3\end{array}\right)$$
+В каноническом ступенчатом виде имеем одну свободную переменную $x_3$, поэтому $\dim V_{\lambda=0}=1$ и ФСР обеспечивает один базисный (собственный) вектор $(1/3, 2/3, 1)^T$  ($x_3=1\Rightarrow x_1=1/3, x_2=2/3$). Можем умножить этот вектор на 3 - от этого его свойство быть базисным (собственным) не измениться, т.е. получим базисный (собственный) вектор $(1, 2, 3)^T \Rightarrow V_{\lambda=0} = \langle(1, 2, 3)^T\rangle$.
+\par
+2. Для пространства $V_{\lambda=1}=\{v=(x_1,x_2,x_3)^T\in\mathbb{R}^3|Av = v\}=\{v=(x_1,x_2,x_3)^T\in\mathbb{R}^3|(A-E)v = 0\}$ найдем базис (или собственные вектора соответствующие собственному значению $\lambda=1$):
+$$A-E=\left(\begin{array}{rrr}3 & -5 & 2\\5 & -8 & 3\\6 & -9 & 3\end{array}\right)\rightarrow\left(\begin{array}{rrr}3 & -5 & 2\\5 & -8 & 3\\0 & 1 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\5 & -8 & 3\\0 & 1 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\0 & 2 & -2\\0 & 1 & -1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & -2 & 1\\0 & 1 & -1\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrr}1 & 0 & -1\\0 & 1 & -1\end{array}\right)$$
+В каноническом ступенчатом виде имеем одну свободную переменную $x_3$, поэтому $\dim V_{\lambda=1}=1$ (что и ожидалось, т.к. кратность корня $\lambda=1$ ровно 1) и ФСР обеспечивает один базисный (собственный) вектор $(1, 1, 1)^T$  ($x_3=1\Rightarrow x_1=1, x_2=1$). Т.е. $V_{\lambda=1} = \langle(1, 1, 1)^T\rangle$.
+\par
+Т.к. оказалось, что $\dim V_{\lambda=0} + \dim V_{\lambda=1} = 2 < 3$, то матрицу $A$ нельзя диагонализировать. Для существования диагонального вида линейного оператора $\varphi:\mathbb{R}^3\rightarrow\mathbb{R}^3$ требуется наличие 3-х линейно независимых собственных векторов - однако в данном случае их может быть только 2.
+\section*{Задача 5}
+{\bf Ответ:} матрица имеет диагональный вид $\left(\begin{array}{rrr}1 & 0 & 0\\0 & 2 & 0\\0 & 0 & 3\end{array}\right)$ в базисе $v_1=\left(\begin{array}{r}1\\0\\0\end{array}\right), v_2=\left(\begin{array}{r}1\\-1\\0\end{array}\right), v_3=\left(\begin{array}{r}0\\-1\\1\end{array}\right)$.
+\\
+\\
+{\bf Решение.} Пусть $A=\left(\begin{array}{rrr}1 & -1 & -1\\0 & 2 & -1\\0 & 0 & 3\end{array}\right)$. Тогда, учитывая, что матрица $\lambda E - A = \left(\begin{array}{rrr}\lambda-1 & 1 & 1\\0 & \lambda-2 & 1\\0 & 0 & \lambda-3\end{array}\right)$ имеет треугольный вид, то характеристический многочлен будет $\chi_A(\lambda)=\det(\lambda E - A)=(\lambda - 1)(\lambda - 2)(\lambda - 3)=0$, т.е. собственные значения матрицы $A$ будут $\lambda \in \{1, 2, 3\}$. Таким образом имеется 3 разных собственных значения у матрицы размером $3\times3$  $\Rightarrow$ существует базис из собственных векторов, в котором она имеет диагональный вид $\left(\begin{array}{rrr}1 & 0 & 0\\0 & 2 & 0\\0 & 0 & 3\end{array}\right)$. Найдем этот базис (собственные вектора, соответствующие трем собственным значениям $\lambda \in \{1, 2, 3\}$).
+\par
+1. $\lambda=1 \Rightarrow V_{\lambda=1}=\{v\in \mathbb{R}^3|(A-E)v=0\}$:
+$$A-E=\left(\begin{array}{rrr}0 & -1 & -1\\0 & 1 & -1\\0 & 0 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr}0 & 0 & -2\\0 & 1 & -1\\0 & 0 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr}0 & 1 & 0\\0 & 0 & 1\end{array}\right)$$
+Одна свободная переменная $x_1\Rightarrow \dim V_{\lambda=1} = 1$. ФСР: $x_1=1\Rightarrow x_2=0, x_3=0 \Rightarrow$ собственный вектор $v_1=\left(\begin{array}{r}1\\0\\0\end{array}\right)$ и $V_{\lambda=1}=\langle v_1 \rangle$.
+\par
+2. $\lambda=2 \Rightarrow V_{\lambda=2}=\{v\in \mathbb{R}^3|(A-2E)v=0\}$:
+$$A-2E=\left(\begin{array}{rrr}-1 & -1 & -1\\0 & 0 & -1\\0 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 1 & 1\\0 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 1 & 0\\0 & 0 & 1\end{array}\right)$$
+Одна свободная переменная $x_2\Rightarrow \dim V_{\lambda=2} = 1$. ФСР: $x_2=1\Rightarrow x_1=-1, x_3=0 \Rightarrow$ собственный вектор $v_2=\left(\begin{array}{r}1\\-1\\0\end{array}\right)$ и $V_{\lambda=2}=\langle v_2 \rangle$.
+\par
+3. $\lambda=3 \Rightarrow V_{\lambda=3}=\{v\in \mathbb{R}^3|(A-3E)v=0\}$:
+$$A-3E=\left(\begin{array}{rrr}-2 & -1 & -1\\0 & -1 & -1\\0 & 0 & 0\end{array}\right)\rightarrow\left(\begin{array}{rrr}2 & 1 & 1\\0 & 1 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1 & 0 & 0\\0 & 1 & 1\end{array}\right)$$
+Одна свободная переменная $x_3\Rightarrow \dim V_{\lambda=3} = 1$. ФСР: $x_3=1\Rightarrow x_1=0, x_2=-1 \Rightarrow$ собственный вектор $v_3=\left(\begin{array}{r}0\\-1\\1\end{array}\right)$ и $V_{\lambda=3}=\langle v_3 \rangle$.
+\section*{Задача 6}
+{\bf Ответ:} через 1000 дней клад будет состоять из $5\cdot2^{999}\cdot(3^{1000}+1)$ золотых монет, $5\cdot2^{998}\cdot(3^{1000}-1)$ серебряных и  $5\cdot2^{999}\cdot(3^{1000}-1)$ бронзовых.
+\\
+\\
+{\bf Решение.} Будем считать наборы из трех видов монет $(x_1,x_2,x_3)^T$ ($x_1$ - число золотых монет, $x_2$ - серебряных, $x_3$ - бронзовых) элементами векторного пространства $\mathbb{R}^3$, т.е. на этих наборах определены операции сложения и умножения на скаляр $\in \mathbb{R}$ в соответствии с аксиомами векторного пространства. Также считаем преобразование $\varphi$, которое происходит с кладом за сутки действием линейного оператора на наборах из трех видов монет, т.е. $\varphi : \mathbb{R}^3\rightarrow\mathbb{R}^3$ удовлетворяет условиям линейного оператора. 
+\par
+По условию задачи нам известно действие оператора $\varphi$ на векторах стандартного базиса в $\mathbb{R}^3$:
+$$\varphi((1,0,0)^T)=(4, 1, 2)^T;$$
+$$\varphi((0,1,0)^T)=(0, 2, 0)^T;$$ 
+$$\varphi((0,0,1)^T)=(2, 1, 4)^T.$$
+\par
+Поэтому матрица оператора $\varphi$ в стандартном базисе будет
+$$A=\left(\begin{array}{rrr}4 & 0 & 2\\1 & 2 & 1\\2 & 0 & 4\end{array}\right)$$
+\par
+Таким образом требуется вычислить действие матрицы $A$, примененной 1000 раз к начальному вектору (начальное состояние клада) $(5,0,0)^T$, т.е. найти вектор $=A^{1000}(5,0,0)^T$. 
+\par
+Если существует базис $v=\{v_1, v_2, v_3\}$,  в котором матрица оператора $\varphi$ имеет диагональный вид $D$, тогда $A^{1000}=CD^{1000}C^{-1}$, где матрица $C$ - это матрица перехода от стандартного базиса в $\mathbb{R}^3$ к базису $v$, т.е. столбцы матрицы $C$ - это координаты $v_i$ в стандартном базисе. Проверим существует ли такой базис.
+\par
+Найдем корни характеристического многочлена матрицы $A$:
+$$\chi_A(\lambda)=\det(\lambda E - A)=0$$
+$$\Updownarrow$$
+$$\left|\begin{array}{rrr}\lambda-4 & 0 & -2\\-1 & \lambda-2 & -1\\-2 & 0 & \lambda-4\end{array}\right|=0$$
+$$\Updownarrow$$
+$$(\lambda-4)^2(\lambda-2)-4(\lambda-2)\equiv((\lambda-4)^2-4)(\lambda-2)=0$$
+$$\Updownarrow$$
+$$(\lambda-4-2)(\lambda-4+2)(\lambda-2)\equiv(\lambda-2)^2(\lambda-6)=0$$
+$$\Updownarrow$$
+$$\lambda\in\{2,6\}$$
+Найдем базис из собственных векторов:
+\par
+1. $\lambda=2\Rightarrow V_{\lambda=2}=\{v\in\mathbb{R}^3|(A-2E)v=0\}$, поэтому ищем ФСР для $V_{\lambda=2}$:
+$$A-2E=\left(\begin{array}{rrr}2 & 0 & 2\\1 & 0 & 1\\2 & 0 & 2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1&0&1\end{array}\right)$$
+Получили две свободные переменные $x_2$ и $x_3$, т.е. $\dim V_{\lambda=2}=2$ и ФСР дает два собственных вектора (базис в $V_{\lambda=2}$):
+$$x_2=1, x_3=0\Rightarrow x_1=0\Rightarrow v_1=(0, 1, 0)^T$$
+$$x_2=0, x_3=1\Rightarrow x_1=-1\Rightarrow v_2=(-1,0,1)^T$$
+Таким образом $V_{\lambda=2}=\langle(0,1,0)^T,(-1,0,1)^T\rangle$.
+\par
+2. $\lambda=6\Rightarrow V_{\lambda=6}=\{v\in\mathbb{R}^3|(A-6E)v=0\}$, поэтому ищем ФСР для $V_{\lambda=6}$:
+$$A-6E=\left(\begin{array}{rrr}-2 & 0 & 2\\1 & -4 & 1\\2 & 0 & -2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1&0&-1\\1&-4&1\end{array}\right)\rightarrow\left(\begin{array}{rrr}1&0&-1\\0&-4&2\end{array}\right)\rightarrow\left(\begin{array}{rrr}1&0&-1\\0&1&-0.5\end{array}\right)$$
+Получили одну свободную переменную $x_3$, т.е. $\dim V_{\lambda=6}=1$ и ФСР дает один собственный вектор (базис в $V_{\lambda=6}$):
+$$x_3=1\Rightarrow x_1=1, x_2=0.5 \Rightarrow v_3=(1, 0.5, 1)^T$$
+Чтобы избавиться от дробных компонент умножим $v_3$ на 2, т.е.  новое значение будет $v_3=(2, 1, 2)^T$ , т.е. $V_{\lambda=6}=\langle (2,1,2)^T\rangle$
+\par
+Таким образом искомый базис существует: $v=\{(0,1,0)^T,(-1,0,1)^T, (2,1,2)^T\}$. И следовательно матрицы $D$ и $C$ имеют вид:
+$$D=\left(\begin{array}{rrr}2 & 0 & 0\\0 & 2 & 0\\0 & 0 & 6\end{array}\right),\ C=\left(\begin{array}{rrr}0 & -1 & 2\\1 & 0 & 1\\0 & 1 & 2\end{array}\right)$$
+\par
+Найдем $C^{-1}$ методом Гаусса:
+$$(C|E)=\left(\begin{array}{rrr|rrr}0 & -1 & 2 & 1 & 0 & 0\\1 & 0 & 1 & 0 & 1 & 0\\0 & 1 & 2 & 0 & 0 & 1\end{array}\right)\rightarrow\left(\begin{array}{rrr|rrr}1 & 0 & 1 & 0 & 1 & 0\\0 & 1 & 2 & 0 & 0 & 1\\0 & -1 & 2 & 1 & 0 & 0\end{array}\right)\rightarrow\left(\begin{array}{rrr|rrr}1 & 0 & 1 & 0 & 1 & 0\\0 & 1 & 2 & 0 & 0 & 1\\0 & 0 & 4 & 1 & 0 & 1\end{array}\right)\rightarrow$$
+$$\left(\begin{array}{rrr|rrr}1 & 0 & 1 & 0 & 1 & 0\\0 & 1 & 2 & 0 & 0 & 1\\0 & 0 & 1 & 1/4 & 0 & 1/4\end{array}\right)\rightarrow\left(\begin{array}{rrr|rrr}1 & 0 & 0 & -1/4 & 1 & -1/4\\0 & 1 & 0 & -1/2 & 0 & 1/2\\0 & 0 & 1 & 1/4 & 0 & 1/4\end{array}\right)=(E|C^{-1})$$
+$$\Downarrow$$
+$$C^{-1}=\left(\begin{array}{rrr}-1/4 & 1 & -1/4\\-1/2 & 0 & 1/2\\1/4 & 0 & 1/4\end{array}\right)$$
+\par
+Таким образом
+$$A^{1000}=\left(\begin{array}{rrr}0 & -1 & 2\\1 & 0 & 1\\0 & 1 & 2\end{array}\right)\left(\begin{array}{ccc}2^{1000} & 0 & 0\\0 & 2^{1000} & 0\\0 & 0 & 6^{1000}\end{array}\right)\left(\begin{array}{rrr}-1/4 & 1 & -1/4\\-1/2 & 0 & 1/2\\1/4 & 0 & 1/4\end{array}\right)$$
+Если обозначить $x=3^{1000}$, то получим
+$$A^{1000}=2^{1000}\left(\begin{array}{rrr}0 & -1 & 2x\\1 & 0 & x\\0 & 1 & 2x\end{array}\right)\frac{1}{4}\left(\begin{array}{rrr}-1 & 4 & -1\\-2 & 0 & 2\\1 & 0 & 1\end{array}\right)=2^{998}\left(\begin{array}{rrr}2x+2 & 0 & 2x-2\\x-1 & 4 & x-1\\2x-2 & 0 & 2x+2\end{array}\right)$$
+$$\Downarrow$$
+$$A^{1000}(5,0,0)^T=5\cdot2^{998}\cdot(2x+2, x-1, 2x-2)^T = 5\cdot2^{999}\cdot(3^{1000}+1, \frac{3^{1000}-1}{2}, 3^{1000}-1)^T$$
+Таким образом через 1000 дней клад будет состоять из $5\cdot2^{999}\cdot(3^{1000}+1)$ золотых монет, $5\cdot2^{998}\cdot(3^{1000}-1)$ серебряных и  $5\cdot2^{999}\cdot(3^{1000}-1)$ бронзовых.
+\section*{Задача 7}
+{\bf Ответ:}
+\par
+$\lambda=0$, если $x=0$; 
+\par
+$\lambda\in\{0, a_1^2+a_2^2+\dots+a_n^2\}$, если $x\neq0$ и $n>1$; 
+\par
+$\lambda=a_1^2$, если $x\neq0$ и $n=1$.
+\\
+\\
+{\bf Решение.} Пусть $x=(a_1,a_2,\dots,a_n)\in\mathbb{R}^n$ и матрица $A=x^Tx$ матрица линейного оператора $\varphi:\mathbb{R}^n\rightarrow\mathbb{R}^n$ в стандартном базисе $e=\{e_1,e_2,\dots,e_n\}$. Заметим, что для любого $i=1,\dots,n$ верно, что $\varphi(e_i)=Ae_i=x^Txe_i=a_ix^T$, т.е. $\Ima \varphi=\langle x^T\rangle$. Поэтому 
+\begin{equation}
+\label{eq3}
+    \dim\Ima \varphi=
+    \begin{cases}
+        0 & x=0\\
+        1 & x\neq0
+    \end{cases}
+\end{equation}
+Тогда рассмотрим 3 случая: 
+\par
+1. $x=0\Rightarrow A\equiv0$ (нулевая матрица), т.е. $\chi_A(\lambda)=\lambda^n$ и следовательно $\lambda=0$ единственное собственное значение $A$.
+\par
+2. $x\neq0, n > 1\Rightarrow$ (согласно~(\ref{eq3})) $\dim \Ima \varphi=1$, т.е. $\dim \ker \varphi=\dim \mathbb{R}^n - \dim \Ima \varphi=n-1$, а это значит, что $\dim V_{\lambda = 0}=\dim \ker \varphi=n-1$. И т.к. $n>1$, то $\lambda=0$ - это собственное значение $A$ и ему соответствует базис из $n-1$ собственных векторов в $V_{\lambda=0}$. Т.к. $\dim V_{\lambda=0}= n-1$, то если существует собственное значение матрицы $A$ отличное от нуля, то оно ровно одно (иначе бы в $\mathbb{R}^n$ нашелся бы базис, состоящий из больше чем $n$ собственных линейно независимых векторов, а это невозможно). Найдем это ненулевое собственное значение. 
+\par
+Ранее мы выяснили, что $Ae_i=a_ix^T$, поэтому, если $y = (y_1, y_2,\cdots,y_n)^T$ некий произвольный вектор из $\mathbb{R}^n$, то $Ay=A(y_1e_1+y_2e_2+\cdots+y_ne_n)=(y_1a_1+y_2a_2+\cdots+y_na_n)x^T$. Поэтому $Ax^T=(a_1^2+a_2^2+\cdots+a_n^2)x^T$, т.е. $\lambda=a_1^2+a_2^2+\cdots+a_n^2$ является единственным собственным значением $A$ отличным от нуля (если бы сумма квадратов $a_i$ давала ноль, то $x=0$, а мы рассматриваем случай когда $x\neq0$).
+\par
+Таким образом в случае $n>1$ и $x\neq0$, у матрицы $A$ ровно 2 собственных значения $\lambda\in\{0,a_1^2+a_2^2+\dots+a_n^2\}$.   
+\par
+3. $x\neq0, n=1$ - в этом случае матрица $A$ состоит из одного элемента $a_1^2$ и имеет, очевидно, одно единственное собственное значение $\lambda=a_1^2$.
+
+\end{document}  
