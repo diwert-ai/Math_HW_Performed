@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+
+
+\title{Домашнее задание 1 (матан)}
+\author{Андрей Зотов}
+\date{Июль 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ:} a) 1/3, б) $\frac{1-b}{1-a}$.
+\\
+\\
+{\bf Решение.} 
+\par
+a) Т.к. $\frac{(-2)^n}{3^{n+1}}=\frac{1}{3}(-\frac{2}{3})^n\rightarrow0$ и $(-\frac{2}{3})^{n+1}\rightarrow0$ при $n\rightarrow\infty$, то:
+$$\lim_{n\rightarrow\infty}{\frac{(-2)^n+3^n}{(-2)^{n+1}+3^{n+1}}}=\lim_{n\rightarrow\infty}{\frac{\frac{(-2)^n}{3^{n+1}}+\frac{1}{3}}{\frac{(-2)^{n+1}}{3^{n+1}}+1}}=\frac{1}{3}.$$
+\par
+б) Пусть $S_a=1+a+\dots+a^n$, тогда $aS_a=S_a-1+a^{n+1}$ и т.к. $|a| < 1$ (т.е. $1-a\neq 0$), то $S_a=\frac{1-a^{n+1}}{1-a}$ (сумма геометрической прогрессии). Аналогично $S_b=1+b+\dots+b^n=\frac{1-b^{n+1}}{1-b}$. Т.к. если $|a| < 1,\ |b| < 1$, то $a^{n+1}\rightarrow 0$ и $b^{n+1}\rightarrow 0$ при $n\rightarrow\infty$, то получаем:
+$$\lim_{n\rightarrow\infty}{\frac{S_a}{S_b}}=\lim_{n\rightarrow\infty}{\frac{(1-a^{n+1})(1-b)}{(1-a)(1-b^{n+1})}}=\frac{1-b}{1-a}\cdot\lim_{n\rightarrow\infty}{\frac{1-a^{n+1}}{1-b^{n+1}}}=\frac{1-b}{1-a}.$$
+\section*{Задача 2}
+{\bf Ответ:} a) 2/3, б) -2.
+\par
+a) Под пределом стоит отношение двух непрерывных функций в точке $x=1$ и каждая равна $0$ в этой точке, поэтому имеем неопределенность вида $\frac{0}{0}$. Воспользуемся правилом Лопиталя и после его применения вычислим предел, учитывая, что под пределом получится отношение двух непрерывных функций в точке $x=1$:
+$$\lim_{x\rightarrow 1}{\frac{x^2-1}{2x^2-x-1}}=\lim_{x\rightarrow 1}{\frac{2x}{4x-1}}=\frac{2}{3}$$
+\par
+б) Также имеем отношение двух непрерывных функций под знаком $\lim$, равных 0 в точке $x=0$, т.е. неопределенность вида $\frac{0}{0}$, поэтому по правилу Лопиталя получаем:
+$$\lim_{x\rightarrow0}{\frac{\ln(1+x^2)}{\sin(\cos{x}-1)}}=\lim_{x\rightarrow 0}{\frac{\frac{2x}{1+x^2}}{-\cos(\cos{x}-1)\cdot\sin{x}}}$$
+Учитывая, что при $x\rightarrow0$ функция $\frac{\sin{x}}{x}\rightarrow 1$ (разобрано на лекции), функция $\frac{2}{1+x^2}\rightarrow 2$ (по непрерывности функции в $x=0$) и функция $-\cos(\cos{x}-1)\rightarrow -1$ (тоже по непрерывности функции в $x=0$), то получаем:
+$$\lim_{x\rightarrow 0}{\frac{\frac{2x}{1+x^2}}{-\cos(\cos{x}-1)\cdot\sin{x}}}=\lim_{x\rightarrow0}{\frac{\frac{2}{1+x^2}}{-\cos(\cos{x}-1)\cdot\frac{\sin{x}}{x}}}=\frac{2}{-1\cdot 1}=-2.$$
+\section*{Задача 3}
+{\bf Ответ:} a) $\frac{2\cdot(1-2x)}{(1-x+x^2)^2}$, б) $\frac{1}{\sqrt{1+e^{-2x}}}$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Воспользуемся формулой $\left(\frac{f}{g}\right)'=\frac{f'g-g'f}{g^2}$:
+$$\left(\frac{1+x-x^2}{1-x+x^2}\right)'=\frac{(1-2x)(1-x+x^2)-(-1+2x)(1+x-x^2)}{(1-x+x^2)^2}=\frac{(1-2x)(1-x+x^2+1+x-x^2)}{(1-x+x^2)^2}=\frac{2\cdot(1-2x)}{(1-x+x^2)^2}.$$
+\par
+б) Воспользуемся формулой $f(g(x))'=f'(g(x))g'(x)$:
+$$\left(\ln{(e^x+\sqrt{1+e^{2x}})}\right)'=\frac{1}{e^x+\sqrt{1+e^{2x}}}\cdot\left(e^x+\frac{e^{2x}}{\sqrt{1+e^{2x}}}\right)=\frac{1}{e^x\cdot(1+\sqrt{1+e^{-2x}})}\cdot\frac{e^x\cdot(\sqrt{1+e^{2x}}+e^x)}{\sqrt{1+e^{2x}}}=$$
+$$=\frac{\sqrt{1+e^{2x}}+e^x}{(1+\sqrt{1+e^{-2x}})\cdot\sqrt{1+e^{2x}}}=\frac{e^x\cdot(1+\sqrt{1+e^{-2x}})}{(1+\sqrt{1+e^{-2x}})\cdot e^x\cdot\sqrt{1+e^{-2x}}}=\frac{1}{\sqrt{1+e^{-2x}}}.$$
+\section*{Задача 4}
+{\bf Ответ:} a) $y'=2\sin{x}\cos{x}\cdot\big(f'(\sin^2{x})-f'(\cos^2{x})\big)$, б) $y'=e^{f(x)}\cdot\big(e^x f'(e^x)+f'(x) f(e^x)\big)$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Воспользуемся формулами $f(g(x))'=f'(g(x))g'(x)$ и $(f+g)'=f'+g'$:
+$$y'=\big(f(\sin^2{x})+f(\cos^2{x})\big)'=f'(\sin^2{x})\cdot 2\sin{x}\cos{x}-f'(\cos^2{x})\cdot 2\sin{x}\cos{x}=2\sin{x}\cos{x}\cdot\big(f'(\sin^2{x})-f'(\cos^2{x})\big).$$
+\par
+б) Воспользуемся формулами $f(g(x))'=f'(g(x))g'(x)$ и $(fg)'=f'g+g'f$:
+$$y'=\left(f(e^x)e^{f(x)}\right)'=f'(e^x)\cdot e^x\cdot e^{f(x)}+e^{f(x)}\cdot f'(x)\cdot f(e^x)=e^{f(x)}\cdot\big(e^xf'(e^x)+f'(x)f(e^x)\big).$$
+\section*{Задача 5}
+{\bf Ответ:} a) у функции $y=(x+1)^{10}e^{-x}$ есть два экстремума: локальный минимум в точке $x=-1$, равный $y(-1)=0$, и локальный максимум в точке $x=9$, равный $y(9)=10^{10}e^{-9}$; б) у функции $y=x+\frac{1}{e^x}$ есть один экстремум: локальный минимум в точке $x=0$, равный $y(0)=1$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Найдем корни уравнения $y'(x)=0$:
+$$y'=10(x+1)^9\cdot e^{-x}-e^{-x}\cdot(x+1)^{10}=e^{-x}\cdot(x+1)^9\cdot(10-x-1)=-e^{-x}(x+1)^9(x-9)=0$$
+$$\Updownarrow$$
+$$(x+1)^9(x-9)=0\ \textrm{(т.к. $-e^{-x} \neq 0\ \forall x \in \mathbb{R}$)} $$
+$$\Updownarrow$$
+$$x\in\{-1,9\}$$
+\par
+Таким образом имеем две критические точки $x\in\{-1,9\}$, в которых функция $y'(x)$ обращается в 0. Т.к. функция $y'(x)$ непрерывна во всех точках $\mathbb{R}$, то она сохраняет знак на промежутках $(-\infty;-1),\ (-1;9)$ и $(9;+\infty)$. Найдем знаки производной на этих промежутках и выясним характер найденных критических точек:
+\par
+1) $x=-1$: $y'(-2)=-\frac{1}{e^2}(-1)^9(-2-9) < 0 \Rightarrow$  функция $y'(x) < 0$ на промежутке $(-\infty;-1)\Rightarrow$ функция $y(x)$ убывает на промежутке $(-\infty; -1)$ и $y'(0)=9 > 0\Rightarrow$ функция $y'(x) > 0$ на промежутке $(-1, 9)\Rightarrow$  функция $y(x)$ возрастает на промежутке $(-1;9)$. Отсюда следует, что в точке $x=-1$ функция достигает локального минимума $y(-1)=0$.
+\par
+2) $x=9$: $y'(10)=-\frac{1}{e^{10}}11^9\cdot 1 < 0\Rightarrow$   функция $y'(x) < 0$ на промежутке $(9;+\infty)\Rightarrow$ функция $y(x)$ убывает на промежутке $(9;+\infty)$. Как было установлено ранее на промежутке $(-1; 9)$ функция $y(x)$ возрастает, поэтому в точке $x=9$ функция достигает локального максимума $y(9)=10^{10}e^{-9}$.
+\par
+б) Найдем корни уравнения $y'(x)=0$:
+$$y' = 1-e^{-x}=0$$
+$$\Updownarrow$$
+$$e^{-x}=1$$
+$$\Updownarrow$$
+$$x=0$$
+\par
+Таким образом имеем одну критическую точку $x=0$, в которой функция $y'(x)$ равна нулю. Т.к. функция $y'(x)$ непрерывна во всех точках $\mathbb{R}$, то она сохраняет знак на промежутках $(-\infty;0)$ и $(0;+\infty)$. Найдем знаки производной на этих промежутках и выясним характер найденной критической точки:
+\par
+$y'(-1)=1-e < 0$ (т.к. $e > 2$) $\Rightarrow$ функция $y'(x) < 0$ на промежутке $(-\infty;0)\Rightarrow$ функция $y(x)$ убывает на промежутке $(-\infty; 0)$ и $y'(1)=1-1/e > 0$ (т.к. $0 < 1/e < 1$) $\Rightarrow$ функция $y'(x) > 0$ на промежутке $(0,+\infty)\Rightarrow$ функция $y(x)$ возрастает на промежутке $(0,+\infty)$. Таким образом в точке $x=0$ функция $y(x)$ достигает локального минимума $y(0)=1$.
+\end{document}
