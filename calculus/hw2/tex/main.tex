@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\const}{const}
+
+
+\title{Домашнее задание 2 (матан)}
+\author{Андрей Зотов}
+\date{Июль 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ:} a) $-\cos x+\frac{\cos^3 x}{3}+\const$; b) $x-\frac{1}{x}-2\ln |x|+\const$; c) $\frac{\ln^3 x}{3}+\const$; d) $\tg \frac{x}{2}+\const$.
+\\
+\\
+{\bf Решение.}
+\\
+a)
+$$\int \sin^3 x \,dx=-\int \sin^2 x \,d(\cos x)=-\int (1-\cos^2 x) \,d(\cos x)=-\int (1-y^2)\,dy\bigg|_{y=\cos x}=-\int dy+\int y^2\,dy=$$
+$$=\left(-y+\frac{y^3}{3}+\const\right)\bigg|_{y=\cos x}=-\cos x+\frac{\cos^3 x}{3}+\const;$$
+\\
+b)
+$$\int \left(\frac{1-x}{x}\right)^2\,dx=\int\left(\frac{1}{x^2}-\frac{2}{x}+1\right)\,dx=\int \frac{dx}{x^2}-2\int \frac{dx}{x}+\int dx=x-\frac{1}{x}-2\ln |x|+\const;$$
+\\
+c)
+$$\int \frac{\ln^2 x}{x}\,dx=\int \ln^2 x\, d(\ln x)=\int y^2\, dy\bigg|_{y=\ln x}=\left(\frac{y^3}{3}+\const\right)\bigg|_{y=\ln x}=\frac{\ln^3 x}{3}+\const;$$
+\\
+d)
+$$\int \frac{dx}{1+\cos x}=\langle \cos x = 2\cdot\cos^2\frac{x}{2}-1\rangle=\int \frac{dx}{2\cos^2 \frac{x}{2}}=\int \frac{d\frac{x}{2}}{\cos^2\frac{x}{2}}=\int \frac{dy}{\cos^2 y}\bigg|_{y=\frac{x}{2}}=\left(\tg y +\const\right)\bigg|_{y=\frac{x}{2}}=\tg\frac{x}{2}+\const.$$
+\section*{Задача 2}
+{\bf Ответ:} a) $\ln 4 - \frac{3}{4}$; b) $-2\pi$.
+\\
+\\
+{\bf Решение.}
+\\
+a)
+$$\int\limits_1^2 x\ln x\, dx=\int\limits_1^2 \ln x\ d\left(\frac{x^2}{2}\right)=\langle \textrm{по частям}\rangle=\ln x \cdot \frac{x^2}{2}\bigg|_1^2-\int\limits_1^2 \frac{x^2}{2}\,d(\ln x)=\ln 4 - \int\limits_1^2\frac{x}{2}\,dx=\ln 4 - \frac{x^2}{4}\bigg|_1^2=\ln 4 - \frac{3}{4};$$
+\\
+b)
+$$\int\limits_0^{2\pi} x\sin x\, dx=-\int\limits_0^{2\pi}x\,d(\cos x)=\langle \textrm{по частям} \rangle=-\left(x\cos x\bigg|_0^{2\pi}-\int\limits_0^{2\pi}\cos x\,dx\right)=-\left(2\pi-
+\sin x\bigg|_0^{2\pi}\right)=-2\pi.$$
+\section*{Задача 3}
+{\bf Ответ:} -1.
+\\
+\\
+{\bf Решение.} Т.к. в знаменателе стоит $\ln x$, то имеет смысл рассматривать данный предел только как предел справа, т.е. при $x\rightarrow+0$. Очевидно, что $\ln x\rightarrow -\infty$ при $x\rightarrow +0$.  Кроме того $e^t > 1$ при $t > 0 \Rightarrow \frac{e^t}{t} > \frac{1}{t}$ при $t>0$ и поэтому:
+$$\int\limits_x^1 \frac{e^t}{t}\,dt \geq \int\limits_x^1 \frac{dt}{t} =-\ln |x| = -\ln x,\ \forall x\in (0; 1]$$
+$$\Downarrow$$
+$$\lim_{x\rightarrow+0}\int\limits_x^1\frac{e^t}{t}\, dt \geq -\lim_{x\rightarrow +0} \ln x = + \infty$$
+$$\Downarrow$$
+$$\int\limits_0^1\frac{e^t}{t}\, dt = +\infty$$
+Таким образом имеем неопределенность вида $\frac{+\infty}{-\infty}$ и следовательно можно воспользоваться правилом Лопиталя:
+$$\lim_{x\rightarrow +0}\frac{\int\limits_x^1\frac{e^t}{t}\, dt}{\ln x}=\lim_{x\rightarrow +0}\frac{\left(-\int\limits_1^x\frac{e^t}{t}\,dt\right)'}{\frac{1}{x}}=\lim_{x\rightarrow+0}\frac{-\frac{e^x}{x}}{\frac{1}{x}}=-\lim_{x\rightarrow+0} e^x = -1.$$
+\section*{Задача 4}
+{\bf Ответ:} $\pi ab$.
+\\
+\\
+{\bf Решение.} Рассматриваемая фигура - это эллипс симметричный относительно осей $Ox$ и $Oy$, поэтому часть фигуры, которая располагается в первом квадранте $(x>=0, y>=0)$ будет составлять $\frac{1}{4}$ от полной площади $S$. При этом функция, график которой образует границу этой фигуры в первом квадранте, имеет вид $y(x) = \sqrt{b^2-\left(\frac{bx}{a}\right)^2}=b\sqrt{1-\left(\frac{x}{a}\right)^2}$. Таким образом (учитывая, что $y(a)=0$):
+$$\frac{S}{4}=\int\limits_0^a b\sqrt{1-\left(\frac{x}{a}\right)^2}\, dx=ab\int\limits_0^a \sqrt{1-\left(\frac{x}{a}\right)^2}\, d\left(\frac{x}{a}\right)=ab\int\limits_0^1 \sqrt{1-t^2}\,dt\bigg|_{t=\frac{x}{a}}$$
+$$\textrm{Заметим, что интеграл справа - это площадь $\frac{1}{4}$ круга c радиусом $R=1$ (разбиралось на лекции)}$$
+$$\Downarrow$$
+$$\frac{S}{4} = ab\frac{\pi}{4}$$
+$$\Downarrow$$
+$$S=\pi ab.$$
+\section*{Задача 5}
+{\bf Ответ:} $\Gamma=\frac{8}{27}\cdot(10^{3/2}-1)$.
+\\
+\\
+{\bf Решение.} Т.к. $y=f(x)=x^{3/2}$, то $f'(x)=\frac{3}{2}x^{1/2}\Rightarrow \left(f'(x)\right)^2=\frac{9}{4}x$. Поэтому длина дуги на отрезке $[0;4]$ будет:
+$$\Gamma=\int\limits_0^4 \sqrt{\left(1+\frac{9}{4}t\right)}\, dt = \frac{4}{9}\int\limits_0^4 \sqrt{\left(1+\frac{9}{4}t\right)}\, d\left(1+\frac{9}{4}t\right)=\frac{4}{9}\int\limits_1^{10}\sqrt{z}\, dz\bigg|_{z=1+\frac{9}{4}t}=\frac{4}{9}\cdot\frac{2}{3}\cdot z^{3/2}\bigg|_1^{10}=\frac{8}{27}(10^{3/2}-1).$$
+
+\end{document}
