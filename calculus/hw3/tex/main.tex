@@ -1,0 +1,161 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{derivative}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\grad}{grad}
+
+
+\title{Домашнее задание 3 (матан)}
+\author{Андрей Зотов}
+\date{Июль 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ:} 1.
+\\
+\\
+{\bf Решение.} $\pdv{f}{x}=\pdv*{\left(x+(y-1)\arcsin \sqrt{\frac{x}{y}}\right)}{x}=1+(y-1)\cdot\pdv{\left(\arcsin \sqrt{\frac{x}{y}}\right)}{x}$, и т.к. второе слагаемое обращается в 0 при $y=1$, то $\pdv{f}{x}(a,1)=1$.
+\section*{Задача 2}
+{\bf Ответ:} a) $\grad u = \left(\frac{1}{x+y^2}, \frac{2y}{x+y^2}\right)$, $H(u)=\left(\begin{array}{rr}-\frac{1}{(x+y^2)^2} & -\frac{2y}{(x+y^2)^2}\\-\frac{2y}{(x+y^2)^2} & \frac{2(x-y^2)}{(x+y^2)^2}\end{array}\right)$;
+\\
+b) $\grad u = \left(-\frac{2x\sin x^2}{y}, -\frac{\cos x^2}{y^2}\right)$, $H(u)=\left(\begin{array}{cc}-\frac{2}{y}(\sin x^2 + 2x^2\cos x^2) & \frac{2x}{y^2}\sin x^2\\\frac{2x}{y^2}\sin x^2 & \frac{2}{y^3}\cos x^2\end{array}\right)$.
+\\
+\\
+{\bf Решение.} a) $\grad u = \grad \ln(x+y^2)=\left(\pdv*{\ln(x+y^2)}{x} , \pdv*{\ln(x+y^2)}{y} \right)=\left(\frac{1}{x+y^2}, \frac{2y}{x+y^2}\right)$.
+$$\Downarrow$$
+$$\pdv[order=2]{u}{x}=\pdv*{\left(\frac{1}{x+y^2}\right)}{x}=-\frac{1}{(x+y^2)^2};$$
+$$\pdv[order=2]{u}{y}=\pdv*{\left(\frac{2y}{x+y^2}\right)}{y}=\frac{2(x+y^2)-4y^2}{(x+y^2)^2}=\frac{2(x-y^2)}{(x+y^2)^2};$$
+$$\pdv{u}{x,y}=\pdv{u}{y,x}=\pdv*{\left(\frac{2y}{x+y^2}\right)}{x}=-\frac{2y}{(x+y^2)^2}.$$
+$$\Downarrow$$
+$$H(u)=\left(\begin{array}{rr}-\frac{1}{(x+y^2)^2} & -\frac{2y}{(x+y^2)^2}\\-\frac{2y}{(x+y^2)^2} & \frac{2(x-y^2)}{(x+y^2)^2}\end{array}\right).$$
+b) $\grad u = \grad \frac{\cos x^2}{y}=\left(\pdv*{\frac{\cos x^2}{y}}{x},\pdv*{\frac{\cos x^2}{y}}{y}\right)=\left(-\frac{2x\sin x^2}{y}, -\frac{\cos x^2}{y^2}\right)$.
+$$\Downarrow$$
+$$\pdv[order=2]{u}{x}=\pdv*{\left(-\frac{2x\sin x^2}{y}\right)}{x}=-\frac{2}{y}\pdv*{(x\sin x^2)}{x}=-\frac{2}{y}(\sin x^2+2x^2\cos x^2);$$
+$$\pdv[order=2]{u}{y}=\pdv*{\left(-\frac{\cos x^2}{y^2}\right)}{y}=\frac{2\cos x^2}{y^3};$$
+$$\pdv{u}{x,y}=\pdv{u}{y,x}=-\pdv*{\left(\frac{\cos x^2}{y^2}\right)}{x}=\frac{2x\sin x^2}{y^2}.$$
+$$\Downarrow$$
+$$H(u)=\left(\begin{array}{cc}-\frac{2}{y}(\sin x^2 + 2x^2\cos x^2) & \frac{2x}{y^2}\sin x^2\\\frac{2x}{y^2}\sin x^2 & \frac{2}{y^3}\cos x^2\end{array}\right).$$
+\section*{Задача 3}
+{\bf Ответ:} a) равенство верно, b) равенство верно.
+\\
+\\
+{\bf Решение.} a) 
+$$\pdv{u}{x,y}=\pdv*{\pdv*{(x^2-2xy-3y^2)}{y}}{x}=\pdv*{(-2x-6y)}{x}=-2;$$
+$$\pdv{u}{y,x}=\pdv*{\pdv*{(x^2-2xy-3y^2)}{x}}{y}=\pdv*{(2x-2y)}{y}=-2.$$
+$$\Downarrow$$ 
+$$\pdv{u}{x,y}=\pdv{u}{y,x}=-2.$$
+\\
+b)
+$$\pdv{u}{x,y}=\pdv*{\pdv*{\left(x^{y^2}\right)}{y}}{x}=\pdv*{\left(2y\ln x\cdot x^{y^2}\right)}{x}=2y\left(\frac{1}{x}\cdot x^{y^2} + \ln x\cdot 2y^3\cdot x^{y^2-1}\right)=2y\cdot x^{y^2-1}(1+\ln x\cdot y^2);$$
+$$\pdv{u}{y,x}=\pdv*{\pdv*{\left(x^{y^2}\right)}{x}}{y}=\pdv*{\left(y^2\cdot x^{y^2-1}\right)}{y}=2y\cdot x^{y^2-1}+y^2\cdot\ln x \cdot x^{y^2-1}\cdot 2y=2y\cdot x^{y^2-1}(1+\ln x\cdot y^2).$$
+$$\Downarrow$$
+$$\pdv{u}{x,y}=\pdv{u}{y,x}=2y\cdot x^{y^2-1}(1+\ln x\cdot y^2).$$
+\section*{Задача 4}
+{\bf Ответ:} a) $\pdv[order={2,1}]{u}{x,y}=0$; b) $\pdv[order={3,3}]{u}{x,y}=-6(\cos x+\cos y)$; c) $\pdv{u}{x,y}=-6x^2yz$.
+\\
+\\
+{\bf Решение.} a) $\pdv*[order={2,1}]{(x\ln(xy))}{x,y}=\pdv*[order=2]{\pdv*{(x\ln(xy))}{y}}{x}=\pdv*[order=2]{\left(\frac{x}{y}\right)}{x}=0$.
+\\
+\\
+\\
+b) $\pdv*[order={3,3}]{(x^3\sin y + y^3\sin x)}{x,y}=\pdv*[order={2,3}]{(3x^2\sin y + y^3\cos x)}{x,y}=\pdv*[order={2,2}]{(3x^2\cos y + 3y^2\cos x)}{x,y}=\pdv*[order={1,2}]{(6x\cos y - 3y^2\sin y)}{x,y}=\pdv*{(-6x\sin y-6y\sin x)}{x,y}=\pdv*{(-6\sin y - 6y\cos x)}{y}=-6(\cos x + \cos y)$.
+\\
+\\
+\\
+c) $u=f(x,xy,xyz)=x+\ln(x^2y^2z)-x^3y^2z\Rightarrow \pdv*{(x+\ln(x^2y^2z)-x^3y^2z)}{x,y}=\pdv*{\left(1+\frac{2}{x}-3x^2y^2z\right)}{y}=-6x^2yz$.
+\section*{Задача 5}
+{\bf Ответ:} $\frac{\pi}{2}$.
+\\
+\\
+{\bf Решение.} $u=x^2+y^2-z^2\Rightarrow\grad u=(\pdv{u}{x},\pdv{u}{y},\pdv{u}{z})=(2x,2y,-2z)$
+$$\Downarrow$$
+$$a=\grad_{A=(\varepsilon,0,0)} u=(2\varepsilon,0,0),\ b=\grad_{B=(0,\varepsilon,0,)} u=(0,2\varepsilon,0),\ \varepsilon\neq0;$$
+$$\Downarrow$$
+$$(a, b) = 2\varepsilon\cdot0+0\cdot 2\varepsilon + 0\cdot0=0,\ |a|=2|\varepsilon| > 0,\ |b|=2|\varepsilon| > 0;$$
+$$\Downarrow$$
+$$\cos \varphi=\frac{(a,b)}{|a|\cdot|b|}=0,\ \varphi\in[0,\pi];$$
+$$\Updownarrow$$
+$$\varphi = \frac{\pi}{2}.$$
+\section*{Задача 6}
+{\bf Ответ:} a) Функция $f(x,y)=x+y+\frac{1}{x}+\frac{1}{y}$ в точке $(-1,-1)$ имеет строгий локальный максимум равный -4, и в точке $(1,1)$ - строгий локальный минимум равный 4; b) Функция $f(x,y)=-x^2-5y^2-3z^2+xy-2xz+2yz+11x+2y+18z+10$ в точке $(4,1,2)$ имеет строгий локальный максимум равный 51.
+\\
+\\
+{\bf Решение.} a) Необходимое условие экстремума функции $f(x,y)$ в точке $A(x,y)$ - это $\grad_A f = 0$, поэтому найдем множество критических точек $K=\{A: \grad_A f=0\}$.
+$$\grad f =\left(\pdv{f}{x}, \pdv{f}{y}\right)=\left(1-\frac{1}{x^2}, 1-\frac{1}{y^2}\right)$$
+$$\Downarrow$$
+\begin{equation*}
+ \begin{cases}
+   1-\frac{1}{x^2}=0\\
+   1-\frac{1}{y^2}=0
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+$$(x,y) \in \{(-1,-1), (-1,1), (1, -1), (1, 1)\}=K$$
+Т.к. 
+$$\pdv[order=2]{f}{x}=\pdv*{\left(1+\frac{1}{x^2}\right)}{x}=\frac{2}{x^3};$$
+$$\pdv[order=2]{f}{y}=\pdv*{\left(1+\frac{1}{y^2}\right)}{y}=\frac{2}{y^3};$$
+$$\pdv{f}{x,y}=\pdv{f}{y,x}=0,$$
+то матрица Гессе функции $f$ будет иметь вид:
+$$H(f)=\left(\begin{array}{cc}2/x^3 & 0\\0 & 2/y^3\end{array}\right)$$
+Рассмотрим все 4 найденных критических точки:
+\par
+1) Точка $(-1,-1)\Rightarrow H_{(-1,-1)}(f)=\left(\begin{array}{rr}-2 & 0\\0 & -2\end{array}\right)$. Т.к. эта матрица соответствует отрицательно определенной квадратичной форме, то в точке $(-1,-1)$ строгий локальный максимум равный $f(-1,-1)=-4$.
+\par
+2) Точка $(-1,1)\Rightarrow H_{(-1,1)}(f)=\left(\begin{array}{rr}-2 & 0\\0 & 2\end{array}\right)$. Получившаяся матрица соответствует знакопеременной квадратичной форме, поэтому в точке $(-1, 1)$ нет экстремума.
+\par
+3) Точка $(1,-1)\Rightarrow H_{(1,-1)}(f)=\left(\begin{array}{rr}2 & 0\\0 & -2\end{array}\right)$. Получившаяся матрица соответствует знакопеременной квадратичной форме, поэтому в точке $(1, -1)$ нет экстремума.
+\par
+4) Точка $(1,1)\Rightarrow H_{(1,1)}(f)=\left(\begin{array}{rr}2 & 0\\0 & 2\end{array}\right)$. Т.к. эта матрица соответствует положительно определенной квадратичной форме, то в точке $(1,1)$ строгий локальный минимум равный $f(1,1)=4$.
+\\
+\\
+b) Найдем критические точки:
+$$\grad f =\left(\pdv{f}{x}, \pdv{f}{y}, \pdv{f}{z}\right)=\left(-2x+y-2z+11,-10y+x+2z+2,-6z-2x+2y+18\right)$$
+$$\Downarrow$$
+\begin{equation*}
+ \begin{cases}
+   -2x+y-2z+11=0\\
+   -10y+x+2z+2=0\\
+   -6z-2x+2y+18=0
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+\begin{equation*}
+ \begin{cases}
+   -x-9y=-13\\
+   x-28y=-24\\
+   -2x+2y-6z=-18
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+\begin{equation*}
+ \begin{cases}
+   -37y=-37\\
+   x=28y-24\\
+   z=\frac{-18-2y+2x}{-6}
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+\begin{equation*}
+ \begin{cases}
+   y=1\\
+   x=28\cdot1-24=4\\
+   z=\frac{-18-2\cdot1+2\cdot4}{-6}=2
+ \end{cases}
+\end{equation*}
+Таким образом существует только одна критическая точка $M(4,1,2)$. Найдем матрицу Гессе в этой точке:
+$$\pdv[order=2]{f}{x}=-2,\ \pdv[order=2]{f}{y}=-10,\ \pdv[order=2]{f}{z}=-6$$
+$$\pdv{f}{x,y}=\pdv{f}{y,x}=1,\ \pdv{f}{x,z}=\pdv{f}{z,x}=-2,\ \pdv{f}{y,z}=\pdv{f}{z,y}=2$$
+$$\Downarrow$$
+$$H(f)=H_{M(4,1,2)}(f)=\left(\begin{array}{rrr}-2 & 1 & -2\\1 & -10 &2\\-2 & 2 & -6\end{array}\right)$$
+Угловые миноры $H_{M(4,1,2)}(f)$ имеют следующие знаки: $\Delta_1=-2 < 0,\ \Delta_2=20-1=19 > 0,\ \Delta_3=-120-4-4+40+8+6=-128+54=-74 < 0$. Поэтому по критерию Сильвестра матрица $H_{M(4,1,2)}(f)$ соответствует отрицательно определенной квадратичной форме, т.е. в точке $M(4,1,2)$ функция $f(x,y,z)$ имеет максимум равный $f(4,1,2)=51$.
+\end{document}
