@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{derivative}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\lagr}{\mathcal{L}}
+
+
+\title{Домашнее задание 4 (матан)}
+\author{Андрей Зотов}
+\date{Август 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ: } a) $\frac{1}{40}$; b) $\frac{a^4}{2}$.
+\\
+\\
+{\bf Решение.} a) Т.к. область $A$ - это область между графиками $y=x$ и $y=x^2$ при $x\in[0,1]$, то $y$ пробегает все значения из отрезка $[0,1]$ и при фиксированном $y$ переменная $x$ пробегает все значения из отрезка $[y,\sqrt{y}]$. Поэтому:
+$$\int\limits_A xy^2 \,dx\,dy=\int\limits_0^1\left(\int\limits_y^{\sqrt{y}} xy^2 \,dx\right)\,dy=\int\limits_0^1 y^2\left(\int\limits_y^{\sqrt{y}} x \,dx\right)\,dy = \int\limits_0^1 y^2\left(\frac{x^2}{2}\bigg|_y^{\sqrt{y}}\right)\, dy=\int\limits_0^1 y^2\left(\frac{y}{2}-\frac{y^2}{2}\right)\,dy=$$
+$$=\frac{1}{2}\left(\int\limits_0^1 y^3\,dy - \int\limits_0^1 y^4\,dy\right)=\frac{1}{2}\left(\frac{y^4}{4}\bigg|_0^1-\frac{y^5}{5}\bigg|_0^1\right)=\frac{1}{2}\left(\frac{1}{4}-\frac{1}{5}\right)=\frac{1}{2}\cdot\frac{1}{20}=\frac{1}{40}.$$
+b) Область интегрирования есть круг радиуса $a$ с центром в точке $(0,0)$, при этом под интегралом стоит функция $f(x,y)=|xy|$, которая является четной как по переменной $x$, так и по переменной $y$, поэтому если обозначить за $I$ исходный интеграл, то интеграл по четвертинке круга ($x \geq 0, y \geq 0$) будет равен $\frac{1}{4}I$ (а $f(x,y) = xy$ в этой четверти). При этом $x$ будет пробегать все значения из отрезка $[0,a]$, а $y$ (при фиксированном $x$) - из отрезка $[0,\sqrt{a^2-x^2}]$. Таким образом:
+$$\frac{I}{4}=\int\limits_{\substack{x^2+y^2 \leq a^2\\x \geq 0\\y \geq 0}} xy\,dx\,dy=\int\limits_0^a\left(\int\limits_0^{\sqrt{a^2-x^2}} xy\,dy\right)\,dx=\int\limits_0^a x\left(\frac{y^2}{2}\bigg|_0^{\sqrt{a^2-x^2}}\right)\,dx=\int\limits_0^a x\left(\frac{a^2-x^2}{2}\right)\,dx=$$
+$$=\frac{1}{2}\left(a^2\int\limits_0^a x\,dx-\int\limits_0^a x^3\,dx\right)=\frac{1}{2}\left(a^2\cdot\frac{x^2}{2}\bigg|_0^a-\frac{x^4}{4}\bigg|_0^a\right)=\frac{1}{2}\left(\frac{a^4}{2}-\frac{a^4}{4}\right)=\frac{a^4}{8};$$
+$$\Downarrow$$
+$$I=\frac{a^4}{2}.$$
+\section*{Задача 2}
+{\bf Ответ: } 0.
+\\
+\\
+{\bf Решение.} Учитывая, что область интегрирования квадрат $[0,\pi/2]\times[0,\pi/2]$, то получаем:
+$$\int\limits_{\substack{0 \leq x \leq \pi/2\\0 \leq y \leq \pi/2}} \cos(x+y)\,dx\,dy=\int\limits_0^{\pi/2}\left(\int\limits_0^{\pi/2}\cos(x+y)\,dx\right)\,dy=\int\limits_0^{\pi/2}\left(\int\limits_0^{\pi/2}\cos(x+y)\,d(x+y)\right)\,dy=\int\limits_0^{\pi/2}\left(\sin(x+y)\bigg|_{x=0}^{x=\pi/2}\right)\,dy=$$
+$$=\langle\sin(\pi/2+y) = \cos y\rangle = \int\limits_0^{\pi/2} (\cos y - \sin y)\,dy=\sin y\bigg|_0^{\pi/2}+\cos y\bigg|_0^{\pi/2}=(1-0)+(0-1)=0.$$
+\section*{Задача 3}
+{\bf Ответ: } $\frac{4\pi}{3\sqrt{abc}}$.
+\\
+\\
+{\bf Решение.} По условию фигура $ax^2+by^2+cz^2 \leq 1$ эллипсоид, поэтому $a,b,c > 0$. Объем этой фигуры будет равен:
+$$V=\int\limits_{ax^2+by^2+cz^2 \leq 1} 1 \,dx\,dy\,dz$$
+Т.к. $a,b,c > 0$, то можно рассмотреть замену переменных $\tilde x = \sqrt{a}\cdot x, \tilde y = \sqrt{b}\cdot y, \tilde z = \sqrt{c}\cdot z$ или: 
+$$\left(\begin{array}{ccc}x\\y\\z\end{array}\right) = \left(\begin{array}{ccc}\frac{1}{\sqrt{a}}\tilde x\\\frac{1}{\sqrt{b}}\tilde y\\\frac{1}{\sqrt{c}}\tilde z\end{array}\right),$$ 
+при которой исходный эллипсоид преобразуется в шар радиуса 1: $\tilde x^2 + \tilde y^2 + \tilde z^2 \leq 1 $. Матрица Якоби этого отображения будет иметь вид:
+$$J = \left(\begin{array}{ccc}\pdv{x}{\tilde x}&\pdv{x}{\tilde y}&\pdv{x}{\tilde z}\\\pdv{y}{\tilde x}&\pdv{y}{\tilde y}&\pdv{y}{\tilde z}\\\pdv{z}{\tilde x}&\pdv{z}{\tilde y}&\pdv{z}{\tilde z}\end{array}\right)=\left(\begin{array}{ccc}\frac{1}{\sqrt{a}}&0&0\\0&\frac{1}{\sqrt{b}}&0\\0&0&\frac{1}{\sqrt{c}}\end{array}\right)$$
+$$\Downarrow$$
+$$|\det J|=\frac{1}{\sqrt{abc}}$$
+И т.к. $\,dx\,dy\,dz=|\det J| \,d\tilde x\,d\tilde y\,d\tilde z$, то
+$$V=\int\limits_{ax^2+by^2+cz^2 \leq 1} 1 \,dx\,dy\,dz=\int\limits_{\tilde x^2 + \tilde y^2 + \tilde z^2 \leq 1 } |\det J| \,d\tilde x \,d\tilde y \,d\tilde z = \frac{1}{\sqrt{abc}}\cdot\int\limits_{\tilde x^2 + \tilde y^2 + \tilde z^2 \leq 1} 1 \,d\tilde x\,d\tilde y\,d\tilde z,$$
+где интеграл справа - это объем шара радиуса 1, который равен $\frac{4\pi}{3}$ (вычислялось на лекции). 
+\\
+Таким образом искомый объем будет:
+$$V = \frac{4\pi}{3\sqrt{abc}}.$$
+\section*{Задача 4}
+{\bf Ответ: } a) условный максимум в точке $(0.5, 0.5)$, b) условный максимум в точке $(\frac{b}{\sqrt{a^2+b^2}}, \frac{a}{\sqrt{a^2+b^2}})$ и условный минимум в точке $(-\frac{b}{\sqrt{a^2+b^2}}, -\frac{a}{\sqrt{a^2+b^2}})$.
+\\
+\\
+{\bf Решение.} a) Лагранжиан имеет вид: $\lagr = \alpha xy - \lambda (x+y-1)$. Поэтому $\grad \lagr=(\pdv{\lagr}{x}, \pdv{\lagr}{y})=(\alpha y - \lambda, \alpha x - \lambda)$ и значит условный экстремум должен удовлетворять системе:
+\begin{equation*}
+ \begin{cases}
+   \alpha y - \lambda=0\\
+   \alpha x - \lambda=0\\
+   x+y-1=0
+ \end{cases}
+\end{equation*}
+Видно, что если $\alpha=0$, то $\lambda=0$, но $\alpha$ и $\lambda$ не могут быть равны нулю одновременно, поэтому $\alpha \neq 0$
+$$\Downarrow$$
+$$x=y=\frac{\lambda}{\alpha}$$
+$$\Downarrow$$
+$$\frac{\lambda}{\alpha}+\frac{\lambda}{\alpha}-1=0$$
+$$\Downarrow$$
+$$2\lambda=\alpha$$
+$$\Downarrow$$
+$$x=0.5,\ y=0.5$$
+\par
+Таким образом точка $(0.5, 0.5)$ - единственная критическая точка $\lagr$, лежащая на прямой $x+y=1$, причем $z(0.5, 0.5)=0.25$. Рассмотрим какую-нибудь другую точку на прямой $x+y=1$, например $(0,1)$, тогда $z(0,1)=0 < z(0.5,0,5)=0.25$, поэтому точка $(0.5,0.5)$ условный максимум исходной задачи. Требование существования $\alpha$ и $\lambda$ одновременно не равных 0 выполняется - достаточно взять $\alpha = 2$ и $\lambda = 1$.
+\par
+b) Лагранжиан имеет вид $\lagr = \alpha(\frac{x}{a}+\frac{y}{b})-\lambda(x^2+y^2-1)$. Поэтому $\grad \lagr=(\frac{\alpha}{a}-2\lambda x, \frac{\alpha}{b}-2\lambda y)$ и значит условный экстремум должен удовлетворять системе:
+\begin{equation*}
+ \begin{cases}
+   \frac{\alpha}{a}-2\lambda x =0\\
+   \frac{\alpha}{b}-2\lambda y =0\\
+   x^2+y^2-1=0
+ \end{cases}
+\end{equation*}
+Видно, что если $\lambda=0$, то $\alpha=0$, но $\alpha$ и $\lambda$ не могут быть равны нулю одновременно, поэтому $\lambda \neq 0$ (аналогично $\alpha \neq 0$)
+$$\Downarrow$$
+\begin{equation*}
+ \begin{cases}
+   x = \frac{\alpha}{2\lambda a}\\
+   y = \frac{\alpha}{2\lambda b}\\
+   x^2+y^2-1=0
+ \end{cases}
+\end{equation*}
+Отсюда получаем, что $y = \frac{a}{b} x$ и $\left(\frac{a}{b}\right)^2x^2+x^2-1=0\Rightarrow x=\pm \frac{b}{\sqrt{a^2+b^2}}\Rightarrow y = \pm \frac{a}{\sqrt{a^2+b^2}}$. Таким образом имеем 2 критические точки $\lagr$, лежащие на окружности $x^2+y^2=1$: $A_1(\frac{b}{\sqrt{a^2+b^2}}, \frac{a}{\sqrt{a^2+b^2}})$ и $A_2(-\frac{b}{\sqrt{a^2+b^2}}, -\frac{a}{\sqrt{a^2+b^2}})$. И т.к. по условию $a,b > 0$, то $z(A_1) > 0$ и $z(A_2) < 0$, т.е. $A_1$ точка условного максимума, а $A_2$ точка условного минимума исходной задачи. Требование существования $\alpha$ и $\lambda$ одновременно не равных 0 выполняется - необходимо взять такие $\alpha$ и $\lambda$, что $\frac{\alpha}{\lambda} = \frac{2ab}{\sqrt{a^2+b^2}}$ для точки $A_1$ и $\frac{\alpha}{\lambda} = -\frac{2ab}{\sqrt{a^2+b^2}}$ для точки $A_2$.
+ \section*{Задача 5}
+ {\bf Ответ: } $r = \sqrt{\frac{S}{6\pi}}$, $h=2\sqrt{\frac{S}{6\pi}}$.
+ \\
+ \\
+ {\bf Решение.} Объем бочки будет $V(r,h)=\pi r^2 h$. Площадь поверхности бочки (с учетом дна и крышки) будет $S=2\pi r^2+2\pi r h = 2\pi r (r+h)$, при этом считаем, что $S > 0$ фиксировано. Таким образом Лагранжиан имеет вид $\lagr(r,h) = \alpha \pi r^2 h - \lambda(S-2\pi r (r + h))$. Поэтому $\grad \lagr=(\pdv{\lagr}{r}, \pdv{\lagr}{h})=(2\alpha\pi r h + \lambda(4\pi r + 2\pi h), \alpha\pi r^2+2\lambda\pi r)$. Т.е. оптимальное решение удовлетворяет системе:
+ \begin{equation*}
+ \begin{cases}
+   2\alpha rh + \lambda (4r + 2h)=0\\
+   S = 2\pi r (r+h)
+ \end{cases}
+\end{equation*}
+Если $\alpha=0$, то $\lambda=0$, но $\alpha$ и $\lambda$ не могут быть равны нулю одновременно, поэтому $\alpha \neq 0$. Поэтому $r=-\frac{2\lambda}{\alpha}$ (при этом видно, что если $\lambda=0$, то $r=0$ и значит $S=0$, но мы исходим из того что $S>0$, поэтому $\lambda\neq 0$). Подставляя в первое уравнение системы выражение для $r$ получаем 
+$$2\alpha\left(-\frac{2\lambda}{\alpha}\right)h+\lambda\left(4\left(-\frac{2\lambda}{\alpha}\right) + 2h\right)=0$$
+Т.к. $\lambda\neq 0$, то получаем:
+$$-4h-\frac{8\lambda}{\alpha}+2h=0$$
+Таким образом $h=-\frac{4\lambda}{\alpha},\ r=-\frac{2\lambda}{\alpha}\Rightarrow h=2r \Rightarrow S = 6\pi r^2\Rightarrow r = r_{ext} = \sqrt{\frac{S}{6\pi}},\ h=h_{ext}=2\sqrt{\frac{S}{6\pi}}$ (корни берем со знаком + потому что $r,h$ не могут быть отрицательными). Точка $(r_{ext},\ h_{ext})$ -  единственный условный экстремум исходной задачи, при этом $V_{ext}=V(r_{ext}, h_{ext}) = \frac{S}{3}\cdot\sqrt{\frac{S}{6\pi}} > 0$. Т.к. при $h=0, r=\sqrt{\frac{S}{2\pi}}$ поверхность бочки будет равна заданному $S$, а объем будет равен $0$, т.е. меньше чем $V_{ext}$, то найденный условный экстремум - это условный максимум функции объема $V(r,h)$. Требование существования $\alpha$ и $\lambda$ одновременно не равных 0 выполняется - необходимо взять такие $\alpha$ и $\lambda$, что $\frac{\lambda}{\alpha}=-\frac{1}{2}\sqrt{\frac{S}{6\pi}}$.
+\section*{Задача 6}
+ {\bf Ответ: } В точке $(3,-4)$ функция $z(x,y)$ достигает условного минимума $z(3,-4)=-75$, а в точке $(-3,4)$  - условного максимума $z(3,-4)=125$.
+ \\
+ \\
+ {\bf Решение.} Лагранжиан имеет вид $\lagr = \alpha(x^2+y^2-12x+16y)-\mu(x^2+y^2-25)$. Поэтому $\grad \lagr=(2\alpha x - 12\alpha - 2\mu x, 2\alpha y + 16\alpha - 2\mu y)$. Рассмотрим 2 основных случая: 
+ \par
+{\bf I.} $z(x,y) \to \max$. Тогда условный максимум должен удовлетворять системе:
+\begin{equation*}
+ \begin{cases}
+   2\alpha x - 12\alpha-2\mu x = 0\\
+   2\alpha y + 16\alpha-2\mu y = 0\\
+   \alpha \geq 0\\
+   \mu(x^2+y^2-25) = 0\\
+   x^2+y^2-25 \leq 0\\
+   \mu \geq 0
+ \end{cases}
+\end{equation*}
+\par 
+{\bf I. a)} $\mu=0\Rightarrow \alpha > 0$ (т.к. $\mu$ и $\alpha$ не равны 0 одновременно) и тогда условный максимум должен удовлетворять системе:
+\begin{equation*}
+ \begin{cases}
+   \alpha x = 6\alpha\\
+   \alpha y =-8\alpha\\
+   \alpha > 0\\
+   x^2+y^2-25 \leq 0\\
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+\begin{equation*}
+ \begin{cases}
+   x = 6\\
+   y = -8\\
+   \alpha > 0\\
+   x^2+y^2-25 \leq 0\\
+ \end{cases}
+\end{equation*}
+Т.к. $6^2+(-8)^2-25=75 > 0$, то полученная система решений не имеет.
+\par
+{\bf I. b)} $\mu \neq 0\Rightarrow x^2+y^2-25=0$ и тогда условный максимум должен удовлетворять системе:
+\begin{equation*}
+ \begin{cases}
+   2\alpha x - 12\alpha-2\mu x = 0\\
+   2\alpha y + 16\alpha-2\mu y = 0\\
+   \alpha \geq 0\\
+   x^2+y^2-25 = 0\\
+   \mu > 0
+ \end{cases}
+\end{equation*}
+$$\Updownarrow$$
+\begin{equation*}
+ \begin{cases}
+   x(\alpha -\mu) = 6\alpha\\
+   y(\alpha -\mu) = -8\alpha\\
+   \alpha \geq 0\\
+   x^2+y^2-25 = 0\\
+   \mu > 0
+ \end{cases}
+\end{equation*}
+Если $\alpha=0$, тогда $x=0,\ y=0$ и очевидно система не имеет решений (решение обязано быть на окружности $x^2+y^2=25$). А если $\alpha \neq 0$ (т.е. $\alpha > 0$), тогда $x = -\frac{3}{4}y \Rightarrow \frac{9}{16}y^2+y^2-25=0\Rightarrow y^2\cdot\frac{25}{16}=25\Rightarrow y^2=16\Rightarrow y = \pm 4\Rightarrow x = \mp 3$. Таким образом получили 2 критические точки $\lagr$: $A_1(3,-4)$ и $A_2(-3, 4)$. И т.к. $z(A_1)=25-36-64=-75$ и $z(A_2)=25+36+64=125$, условный максимум достигается в точке $A_2(-3,4)$ и равен $z(A_2)=125$. Помимо прочего также требуется чтобы существовали $\alpha,\mu > 0$. Для существования условного максимума в точке $A_2(-3,4)$ достаточно положить $\alpha=1$ и $\mu=3$.
+\par
+{\bf II.} $z(x,y) \to \min$. В этом случае получается аналогичная система, только $\mu \leq 0$. Проводя те же рассуждения, получим те же 2 условных экстремума. Таким образом условный минимум достигается в точке $A_1(3,-4)$ и равен $z(A_1)=-75$. Помимо прочего также требуется чтобы существовали $\alpha > 0,\mu < 0$. Для существования условного минимума в точке $A_1(3,-4)$ достаточно положить $\alpha=1$ и $\mu=-1$.
+\end{document}
