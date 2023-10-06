@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\Var}{\textbf{Var}}
+
+
+\title{Домашнее задание 4 (тервер)}
+\author{Андрей Зотов}
+\date{Сентябрь 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ: } $\mathbb{E}X=\frac{1}{4}$.
+\\
+\\
+{\bf Решение.}
+\par С геометрической точки зрения мат. ожидание — координата по оси $Ox$ центра масс области под графиком функции плотности $f_X(x)$. Эта область состоит из двух частей с ненулевой площадью: треугольник с площадью $\frac{1}{2}$ и прямоугольник с такой же площадью. Координата по оси $Ox$ центра треугольника будет $x=-\frac{1}{2}$, координата по оси $Ox$ центра прямоугольника будет $x=1$. Таким образом центр области под графиком плотности будет середина отрезка $[-\frac{1}{2}, 1]$, т.е. $\mathbb{E}X=\frac{-1/2+1}{2}=\frac{1}{4}$.
+\section*{Задача 2}
+{\bf Ответ: } $\mathbb{E}Y=1$.
+\\
+\\
+{\bf Решение.}
+\par Функция распределения $F_Y(x)=0$, при $x < 0$, поэтому мат. ожидание $Y$ - это площадь области над графиком $F_Y(x)$ при $x \geq 0$, ограниченной прямой $F_Y=1$. Эта область состоит из прямоугольника площадью $\frac{1}{2}$, и двух трапеций - одна с площадью $\frac{3}{8}$, другая с площадью $\frac{3}{24}=\frac{1}{8}$, т.е. $\mathbb{E}Y=\frac{1}{2}+\frac{3}{8}+\frac{1}{8}=1$.
+\section*{Задача 3}
+{\bf Ответ: } a) 10 запросов в час; б) 6 минут; в) $\mathbb{E}Y=e^{10(e-1)}\approx 29000345$.
+\\
+\\
+{\bf Решение.}
+\par
+a)
+Т.к. $\mathbb{E}X=\lambda$ (разобрано на лекции), то среднее число запросов за час будет 10.
+\par
+б) Если $Z$ - это случайная величина равная времени между двумя последовательными запросами, то $Z$ имеет экспоненциальное распределение с параметром $\lambda=10$. И т.к. $\mathbb{E}Z=\lambda^{-1}$ (разобрано на лекции), то среднее время между двумя запросами будет $\lambda^{-1}=\frac{1}{10}$ часа или 6 минут.
+\par
+в) $\mathbb{E}Y=\mathbb{E}e^X=\sum\limits_{k=0}^{\infty}e^k\cdot P(X=k)=\sum\limits_{k=0}^{\infty}e^k\cdot\frac{e^{-\lambda}\lambda^k}{k!}=e^{-\lambda}\sum\limits_{k=0}^{\infty}\frac{(\lambda e)^k}{k!}=e^{-\lambda}\cdot e^{\lambda e}=e^{\lambda(e-1)}=e^{10(e-1)}$.
+\section*{Задача 4}
+{\bf Ответ: } a) 1; б) 25; в) 6.
+\\
+\\
+{\bf Решение.}
+\par
+a) $\Var\left(\frac{X-2}{2}\right)=\frac{1}{4}\Var(X-2)=\frac{1}{4}\Var(X)=\frac{\sigma_1^2}{4}=1$.
+\par
+б) Т.к. $X$ и $Y$ независимы, то $\Var(2X-3Y)=\Var(2X)+\Var(-3Y)=4\Var(X)+9\Var(Y)=4\sigma_1^2+9\sigma_2^2=16+9=25$.
+\par
+в) Т.к. $X$ и $Y$ независимы, то $\mathbb{E}(XY)=\mathbb{E}X\mathbb{E}Y$. Кроме того заметим, что если $\Var(X)=\sigma_1^2=\mathbb{E}X^2-\mu_1^2$, то $\mathbb{E}X^2=\sigma_1^2+\mu_1^2$ (аналогично $\mathbb{E}Y^2=\sigma_2^2+\mu_2^2$). 
+\par
+Таким образом $\mathbb{E}(X-Y)^2=\mathbb{E}X^2-2\mathbb{E}X\mathbb{E}Y+\mathbb{E}Y^2=\sigma_1^2+\mu_1^2-2\mu_1\mu_2+\sigma_2^2+\mu_2^2=4+1-0+1+0=6$.
+\section*{Задача 5}
+{\bf Доказательство.}
+\par
+Пусть $X$ имеет конечное мат. ожидание  $\mathbb{E}X = \mu$ и дисперсию $\Var(X)=\sigma^2$, тогда $\mathbb{E}X^2=\sigma^2+\mu^2$. Отсюда получаем 
+$$\mathbb{E}(X-a)^2=\mathbb{E}X^2-2a\mathbb{E}X+a^2=\sigma^2+\mu^2-2a\mu+a^2=\sigma^2+(\mu-a)^2$$
+Получили сумму квадратов, где первое слагаемое фиксировано, а второе очевидно достигает минимума, когда равно 0, т.е. при $a=\mu$.
+\par
+Таким образом $\min\limits_{a\in\mathbb{R}}\mathbb{E}(X-a)^2=\sigma^2=\Var(X)$ при $a=\mu=\mathbb{E}X$. Что и требовалось доказать.
+\section*{Задача 6}
+{\bf Ответ: } a) \begin{tabular}{|c|c|c|c|}
+     \hline
+     $\textbf{X}$ & 0 & 1 & 2\\
+     \hline
+     \textbf{P} & $\frac{1}{3}$ & $\frac{24}{45}$ & $\frac{2}{15}$\\
+     \hline
+\end{tabular}; б) $\mathbb{E}X=0.8$; в) $\Var(X)=\frac{96}{225}\approx 0.43$; г) \begin{tabular}{|c|c|c|c|}
+     \hline
+     $\textbf{X}$ & 0 & 1 & 2\\
+     \hline
+     \textbf{P} & $\frac{9}{25}$ & $\frac{12}{25}$ & $\frac{4}{25}$\\
+     \hline
+\end{tabular}, $\mathbb{E}X=0.8$, $\Var(X)=0.48$.
+\\
+\\
+{\bf Решение.}
+\par
+Пусть $X$ - случайная величина числа вынутых черных шаров, тогда $X \in \{0,1,2\}$. Пусть событие $A_1$  <<В первый раз был вынут черный шар>> и событие $A_2$ <<Во второй раз был вынут черный шар>>. 
+\par
+Тогда
+$$P(X=0)=P(\bar A_1 \bar A_2)=P(\bar A_1)P(\bar A_2|\bar A_1)=\frac{6}{10}\cdot\frac{5}{9}=\frac{1}{3};$$
+$$P(X=1)=P(A_1 \bar A_2) + P(\bar A_1 A_2)=P(A_1)P(\bar A_2|A_1) + P(\bar A_1)P(A_2|\bar A_1)=\frac{4}{10}\cdot\frac{6}{9}+\frac{6}{10}\cdot\frac{4}{9}=\frac{48}{90}=\frac{24}{45};$$
+$$P(X=2)=P(A_1A_2)=P(A_1)P(A_2|A_1)=\frac{4}{10}\cdot\frac{3}{9}=\frac{2}{15}.$$
+\par
+Т.е. распределение $X$ будет \begin{tabular}{|c|c|c|c|}\hline$\textbf{X}$ & 0 & 1 & 2\\\hline\textbf{P} & $\frac{1}{3}$ & $\frac{24}{45}$ & $\frac{2}{15}$\\\hline\end{tabular}. Отсюда находим ответ на подзадачи б) и в). 
+\par
+б) Мат. ожидание $\mathbb{E}X=0\cdot P(X=0)+1\cdot P(X=1)+2\cdot P(X=2)=\frac{24}{45}+\frac{4}{15}=\frac{36}{45}=0.8;$
+\par
+в) Дисперсию $\Var(X) =\mathbb{E}X^2-(\mathbb{E}X)^2 = 0\cdot P(X=0) + 1\cdot P(X=1)+4\cdot P(X=2) - 0.8^2 = \frac{24}{45}+\frac{8}{15}-0.64=\frac{96}{225}\approx 0.43$.
+\par
+г) В этом случае события $A_1$ и $A_2$ будут независимыми, поэтому:
+$$P(X=0)=P(\bar A_1 \bar A_2)=P(\bar A_1)P(\bar A_2)=\frac{6}{10}\cdot\frac{6}{10}=\frac{9}{25};$$
+$$P(X=1)=P(A_1\bar A_2)+P(\bar A_1 A_2)=P(A_1)P(\bar A_2)+P(\bar A_1)P(A_2)=\frac{4}{10}\cdot\frac{6}{10}+\frac{6}{10}\cdot\frac{4}{10}=\frac{12}{25};$$
+$$P(X=2)=P(A_1A_2)=P(A_1)P(A_2)=\frac{4}{10}\cdot\frac{4}{10}=\frac{4}{25}.$$
+\par
+Т.е. распределение $X$ будет \begin{tabular}{|c|c|c|c|}\hline$\textbf{X}$ & 0 & 1 & 2\\\hline\textbf{P} & $\frac{9}{25}$ & $\frac{12}{25}$ & $\frac{4}{25}$\\\hline\end{tabular}. Отсюда $\mathbb{E}X=1\cdot\frac{12}{25}+2\cdot\frac{4}{25}=\frac{20}{25}=\frac{4}{5}=0.8$ и $\Var(X)=1\cdot\frac{12}{25}+4\cdot\frac{4}{25}-0.8^2=\frac{28}{25}-\frac{64}{100}=0.48.$
+\par
+Таким образом распределение $X$ изменилось, мат. ожидание осталось прежним, а дисперсия немного увеличилась.
+ 
+\end{document}
