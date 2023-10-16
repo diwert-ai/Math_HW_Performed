@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\setlength\parindent{1.5em}
+\DeclareMathOperator{\Var}{\textbf{Var}}
+\DeclareMathOperator{\Cov}{\textbf{Cov}}
+\DeclareMathOperator{\EX}{\mathbb{E}}
+
+\title{Домашнее задание 5 (тервер)}
+\author{Андрей Зотов}
+\date{Октябрь 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Задача 1}
+{\bf Ответ: }  $\frac{0.6}{\sqrt{0.56}}\approx0.80$.
+\\
+\\
+{\bf Решение.}
+\par
+По определению $\rho_{X,Y}=\frac{\Cov(X,Y)}{\sigma_X\sigma_Y}=\frac{\EX(XY) - \EX X \EX Y}{\sigma_X\sigma_Y}$. Поэтому требуется знать распределения величин $X,Y$ и $XY$. Эти распределения имеют вид:
+$$
+\begin{tabular}{|c|c|c|}\hline$\textbf{X}$ & 0 & 1\\\hline\textbf{P} & 0.6 & 0.4 \\\hline\end{tabular}\, 
+\begin{tabular}{|c|c|c|}\hline$\textbf{Y}$ & 0 & 1\\\hline\textbf{P} & 0.7 & 0.3 \\\hline\end{tabular}\,
+\begin{tabular}{|c|c|c|}\hline$\textbf{XY}$ & 0 & 1\\\hline\textbf{P} & 0.7 & 0.3 \\\hline\end{tabular} 
+$$
+\par
+Отсюда $\EX X=0.4,\,\EX Y=0.3,\,\EX (XY)=0.3,\,\EX X^2=0.4,\,\EX Y^2=0.3$ и поэтому:
+$$\Var(X)=\EX X^2-(\EX X)^2=0.4-0.4^2=0.24;$$
+$$\Var(Y)=\EX Y^2-(\EX Y)^2=0.3-0.3^2=0.21;$$
+$$\sigma_X=\sqrt{0.24},\,\sigma_Y=\sqrt{0.21}.$$
+\par
+Таким образом:
+$$\rho_{X,Y}=\frac{\EX(XY) - \EX X \EX Y}{\sigma_X\sigma_Y}=\frac{0.3-0.4\cdot0.3}{\sqrt{0.24}\sqrt{0.21}}=\frac{0.18}{\sqrt{0.24}\sqrt{0.21}}=\frac{0.6}{\sqrt{0.56}}\approx0.80.$$
+\section*{Задача 2}
+{\bf Ответ: } a) $\frac{1}{3}$; б) $\frac{1}{\sqrt{5}}\approx0.45$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Т.к. $Y\sim U(-1,1)$, то $\EX Y=0,\,\Var(Y)=\frac{2^2}{12}=\frac{1}{3}$ и т.к. $X$ и $Y$ независимы, то $\EX(XY)=\EX X\EX Y=0$, поэтому 
+$$\Cov(Z,Y)=\EX(ZY)-\EX Z\EX Y=\EX(2XY+Y^2)=\EX Y^2=\Var(Y)+(\EX Y)^2=\frac{1}{3} + 0=\frac{1}{3}.$$
+\par
+б) По определению $\rho_{Z,Y}=\frac{\Cov(Z,Y)}{\sigma_Z\sigma_Y}$. Ранее мы нашли, что $\Cov(Z,Y)=\frac{1}{3}$. Также понятно, что $\sigma_Y=\sqrt{\Var(Y)}=\frac{1}{\sqrt{3}}$. Учитывая, что $X$ и $Y$ независимы, а также, что $\Var(X)=\Var(Y)=\frac{1}{3}\,(X\sim U(-1,1))$ получаем, что $\Var(Z)=\Var(2X+Y)=4\Var(X)+\Var(Y)=\frac{4}{3}+\frac{1}{3}=\frac{5}{3}$, т.е. $\sigma_Z=\sqrt{\frac{5}{3}}$. Поэтому:
+$$\rho_{Z,Y}=\frac{\Cov(Z,Y)}{\sigma_Z\sigma_Y}=\frac{\frac{1}{3}}{\sqrt{\frac{5}{3}}\cdot\frac{1}{\sqrt{3}}}=\frac{1}{\sqrt{5}}\approx0.45.$$
+\section*{Задача 3}
+{\bf Ответ: } a) $\EX(X|Y=1)=1,\,\EX(X|Y=3)=2$; б) 0.6; в) $\frac{1}{2} + \frac{Y}{2}$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Заметим, что $P(Y=1)=0.6$, поэтому $$\EX(X|Y=1)=\sum\limits_{x\in\{0,2,3\}}x\cdot P(X=x|Y=1) = \sum\limits_{x\in\{0,2,3\}}x\cdot\frac{P(X=x,Y=1)}{P(Y=1)}=$$
+$$=\frac{1}{P(Y=1)}\cdot\left(2\cdot{P(X=2,Y=1)}+3\cdot{P(X=3,Y=1)}\right)=\frac{3\cdot 0.2}{0.6}=1.$$
+\par
+И т.к. $P(Y=3)=0.4$, то аналогично получаем:
+$$\EX(X|Y=3)=\frac{2\cdot P(X=2,Y=3)+3\cdot P(X=3,Y=3)}{P(Y=3)}=\frac{2\cdot 0.4 + 3\cdot 0}{0.4}=2.$$
+\par
+б) Т.к. $P(Y=1)=0.6$, то $\EX(X|Y)$ принимает значение $\EX(X|Y=1)$ с вероятностью 0.6.
+\par
+в) Т.к. при $Y=1$ получаем $\frac{1}{2}+\frac{Y}{2}=1=\EX(X|Y=1)$ и при $Y=3$ получаем $\frac{1}{2}+\frac{Y}{2}=2=\EX(X|Y=3)$, то $\EX(X|Y)=\frac{1}{2}+\frac{Y}{2}$.
+\section*{Задача 4}
+{\bf Ответ: } $\sin Y(Y^2+4Y+8)$
+\\
+\\
+{\bf Решение.}
+\par
+Учитывая независимость $X,Y$ и то, что $\EX X=2,\,\EX X^2=\Var(X)+(\EX X)^2=4+4=8$ (т.к. $X\sim N(2,4))$ получаем $$\EX((X+Y)^2\sin Y | Y)=\sin Y\EX(X^2+2XY+Y^2|Y)=\sin Y(\EX(X^2|Y))+2Y\EX(X|Y)+\EX(Y^2|Y))=$$
+$$=\sin Y (\EX X^2+2Y\EX X + Y^2)=\sin Y(Y^2+4Y+8).$$
+\section*{Задача 5}
+{\bf Ответ: } a) $\frac{1}{100}$; б) $\leq \frac{1}{99^2}\approx0.0001$.
+\\
+\\
+{\bf Решение.}
+\par
+a) Пусть $T$ время обработки запроса. Тогда $\EX T=1$ секунда. Т.к. величина $T$ неотрицательна, то по неравенству Маркова для искомой вероятности получаем:
+$$P(T\geq 100)\leq\frac{\EX T}{100}=\frac{1}{100}$$
+\par
+Т.е. искомая вероятность не может быть больше $\frac{1}{100}$. При этом это значение может достигаться в случае, когда распределение $T$ имеет вид \begin{tabular}{|c|c|c|}\hline$\textbf{T}$ & 0 & 100\\\hline\textbf{P} & 0.99 & 0.01\\\hline\end{tabular}, т.е. когда в $99\%$ случаев запрос обрабатывается мгновенно ($T=0$) и в $1\%$ случаев за $T=100$ секунд.
+\par
+б) Согласно неравенству Чебышева $P(|T-\EX T|\geq \varepsilon)\leq \frac{\Var(T)}{\varepsilon^2}$. Т.к. $T \geq 0$, то $|T-1|\geq99\Leftrightarrow T \geq 100$, поэтому
+$$P(T\geq 100)\leq\frac{1}{99^2}\approx0.0001.$$
+\section*{Задача 6}
+{\bf Ответ: } 60 минут.
+\\
+\\
+{\bf Решение.}
+\par
+Пусть $T$ - время решения задачи. Тогда $\EX T=40$ и $P(T \leq 30)=\frac{1}{2}\Rightarrow P(T > 30)=1-\frac{1}{2}=\frac{1}{2}$. Также известно, что $\EX(T|T\leq 30)=20$.
+\par
+По определению $\EX(T|T\leq 30)=\frac{\EX (T\cdot I_{T\leq 30})}{P(T\leq 30)}$ и $\EX(T|T>30)=\frac{\EX (T\cdot I_{T > 30})}{P(T > 30)}$, где  $I_{T\leq 30},I_{T > 30}$ - индикаторы соответствующих событий. Поэтому:
+$$\EX(T|T\leq 30)P(T\leq 30)+\EX(T|T>30)P(T > 30)=\EX (T\cdot I_{T\leq 30})+\EX (T\cdot I_{T > 30})=\EX(T\cdot I_{T\leq 30}+T\cdot I_{T > 30})=\EX T$$
+\par
+Или то же самое после подстановки числовых значений:
+$$20\cdot\frac{1}{2}+\EX(T|T>30)\cdot\frac{1}{2}=40.$$
+$$\Updownarrow$$
+$$\EX(T|T>30)=60.$$
+\par 
+Что и требовалось найти.
+\section*{Задача 7}
+{\bf Ответ: } $50\cdot\left(\frac{49}{50}\right)^{20}\approx 33.4$.
+\\
+\\
+{\bf Решение.}
+\par
+Пусть событие $A_i$ = <<i-й сайт не взломан>>. Пусть событие $H_j^i$ = <<i-й сайт не был взломан j-м хакером>>. Тогда $A_i=\bigcap\limits_{j=1}^{20}H_j^i$ и т.к. каждый хакер выбирает цель независимо, то при фиксированном i события $H_i^j$ независимы в совокупности, т.е. $P(A_i)=\prod\limits_{j=1}^{20}P(H_j^i)$. Если j-й хакер не атаковал i-й сайт, значит он атаковал любой из 50 кроме i-го, т.е. любой из 49 сайтов. А т.к. j-й хакер атакует любой сайт равновероятно, то $P(H_j^i)=\frac{49}{50}$. Отсюда $P(A_i)=\left(\frac{49}{50}\right)^{20}$. 
+\par
+Пусть $X$ - число не взломанных сайтов. Тогда если $I_{A_i}$ - индикатор события $A_i$, то $$X=\sum\limits_{i=1}^{50}I_{A_i}\Rightarrow \EX X=\sum\limits_{i=1}^{50}\EX I_{A_i}=\sum\limits_{i=1}^{50}P(A_i)=50\cdot\left(\frac{49}{50}\right)^{20}\approx 33.4.$$ 
+
+\end{document}
